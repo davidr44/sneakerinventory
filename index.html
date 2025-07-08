@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNEAKER INVENTORY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">SNEAKER <span>INVENTORY</span></a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="controls">
+            <div class="search-bar">
+                <div class="input-wrapper">
+                    <i class="fas fa-search search-icon"></i><input type="text" id="searchInput" placeholder="Pesquisar pelo nome...">
+                </div>
+            </div>
+        
+            <button class="filter-btn active" data-filter="all"><i class="fas fa-bars"></i> Padrão</button>
+            <button class="filter-btn" data-filter="price-asc"><i class="fas fa-sort-amount-down-alt"></i> Menor-Maior Preço</button>
+            <button class="filter-btn" data-filter="price-desc"><i class="fas fa-sort-amount-up-alt"></i> Maior-Menor Preço</button>
+        
+            <button id="toggleSizeFilterBtn" class="filter-btn"><i class="fas fa-ruler-horizontal"></i> Filtrar por Tamanho</button>
+        
+            <div id="sizeFilterDropdown" class="size-filter-dropdown">
+                <div class="size-filter-section">
+                    <h4>EU Footwear</h4>
+                    <div class="size-options" id="footwearSizeOptions">
+                        </div>
+                </div>
+                <button id="applySizeFilterBtn" class="apply-filter-btn">Aplicar Filtro</button>
+            </div>
+        </div>
+        
+        <div class="selected-size-chips-wrapper" id="selectedSizeChipsWrapper">
+            <div class="selected-size-chips-container" id="selectedSizeChipsContainer">
+                </div>
+        </div>
+
+        <div class="product-grid" id="productGrid">
+            </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SNEAKER INVENTORY. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
