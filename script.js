@@ -18,7 +18,7 @@ const products = [
         price: 120.00,
         image: "https://img.hypeboost.com/products/adidas-handball-spezial-sporty-rich-green/w900/img01.jpg",
         sizes: [
-            { size: "35 1/2", qty: 1 }
+            { size: "36 2/3", qty: 1 }
         ]
     },
     {
@@ -62,7 +62,6 @@ const products = [
         price: 0.00,
         image: "https://img.hypeboost.com/products/nike-dunk-high-aluminum-w/w900/img01.jpg",
         sizes: [
-            { size: "36", qty: 1 },
             { size: "36.5", qty: 1 }
         ]
     },
@@ -73,7 +72,7 @@ const products = [
         price: 0.00,
         image: "https://collectkicks.pt/cdn/shop/files/AdidasCampus00sGreyWhiteGSlateral_1080x.webp?v=1710785206",
         sizes: [
-            { size: "36 2/3", qty: 1 }
+            { size: "36 2/3", qty: 2 }
         ]
     },
     {
@@ -83,7 +82,7 @@ const products = [
         price: 0.00,
         image: "https://img.hypeboost.com/products/adidas-handball-spezial-sporty-rich-pink/w900/img01.jpg",
         sizes: [
-            { size: "36 2/3", qty: 1 }
+            { size: "35.5", qty: 1 }
         ]
     },
     {
@@ -93,7 +92,7 @@ const products = [
         price: 0.00,
         image: "https://img.hypeboost.com/products/nike-dunk-low-unc-2021-gs/w900/img01.jpg",
         sizes: [
-            { size: "38.5", qty: 1 }
+            { size: "38", qty: 1 }
         ]
     },
     {
@@ -184,8 +183,8 @@ const products = [
         image: "https://img.hypeboost.com/products/nike-dunk-low-midnight-navy-university-blue/w900/img01.jpg",
         sizes: [
             { size: "40.5", qty: 1 },
-            { size: "42.5", qty: 1 }, // Note que este tamanho aparece mais abaixo na sua lista, agrupei aqui.
-            { size: "43", qty: 1 } // Note que este tamanho aparece mais abaixo na sua lista, agrupei aqui.
+            { size: "42.5", qty: 2 }, // Note que este tamanho aparece mais abaixo na sua lista, agrupei aqui.
+             // Note que este tamanho aparece mais abaixo na sua lista, agrupei aqui.
         ]
     },
     {
@@ -245,7 +244,7 @@ const products = [
         price: 0.00,
         image: "https://img.hypeboost.com/products/the-powerpuff-girls-x-nike-sb-dunk-low-blossom/w900/img01.jpg",
         sizes: [
-            { size: "44.5", qty: 1 }
+            { size: "44", qty: 1 }
         ]
     },
     {
@@ -266,6 +265,16 @@ const products = [
         image: "https://img.hypeboost.com/products/youth-of-paris-x-adidas-campus-00s-black/w900/img01.jpg",
         sizes: [
             { size: "46", qty: 1 }
+        ]
+    },
+     {
+        id: 27,
+        name: "Jordan 1 Retro High OG SP Union LA Bephies Beauty Supply Summer of ‘96",
+        sku: "FD2565-100",
+        price: 0.00,
+        image: "https://www.resellzonecesena.com/cdn/shop/files/air-jordan-1-retro-high-og-sp-union-la-bephies-beauty-supply-summer-of-96-fd2565-100-resellzone.jpg?v=1717598769",
+        sizes: [
+            { size: "40", qty: 1 }
         ]
     }
 ];
