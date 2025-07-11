@@ -27,17 +27,6 @@ const products = [
         category: "footwear"
     },
     {
-        id: 5,
-        name: "adidas Campus 00s Dark Green White (Kids)",
-        sku: "IH7492",
-        price: 50.00,
-        image: "https://img01.ztat.net/article/spp-media-p1/59c4a1cbd62d41159c75677e9a5fe869/afcb006d75f54509b4c62d431540fe03.jpg?imwidth=1800&filter=packshot",
-        sizes: [
-            { size: "36 2/3", qty: 1 }
-        ],
-        category: "footwear"
-    },
-    {
         id: 7,
         name: "adidas Campus 00s Grey Gum (Kids)",
         sku: "HQ6507",
@@ -48,6 +37,17 @@ const products = [
         ],
         category: "footwear"
     },
+    {
+        id: 5,
+        name: "adidas Campus 00s Dark Green White (Kids)",
+        sku: "IH7492",
+        price: 50.00,
+        image: "https://img01.ztat.net/article/spp-media-p1/59c4a1cbd62d41159c75677e9a5fe869/afcb006d75f54509b4c62d431540fe03.jpg?imwidth=1800&filter=packshot",
+        sizes: [
+            { size: "36 2/3", qty: 1 }
+        ],
+        category: "footwear"
+    }
     {
         id: 26,
         name: "adidas Campus 00s Youth of Paris",
@@ -400,7 +400,7 @@ function displayProducts(productsToDisplay) {
                 ${sizesHtml}
             </div>
             <div class="product-actions">
-                <a href="https://wa.me/351925263235?text=Ol%C3%A1,%20tenho%20interesse%20no%20${encodeURIComponent(product.name)}%20(SKU:%20${product.sku}).%20Pode%20dar-me%20mais%20informa%C3%A7%C3%B5es?" target="_blank" class="whatsapp-btn">
+                <a href="https://wa.me/351925263235?text=Ol%C3%A1,%20tenho%20interesse%20no%20produto%20${encodeURIComponent(product.name)}%20(SKU:%20${product.sku}).%20Pode%20dar-me%20mais%20informa%C3%A7%C3%B5es?" target="_blank" class="whatsapp-btn">
                     <i class="fab fa-whatsapp"></i> Contactar
                 </a>
             </div>
