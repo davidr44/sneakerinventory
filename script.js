@@ -3,13 +3,14 @@ const products = [
     {
         id: 1,
         name: "adidas Campus 00s Dark Green White Cloud White",
-        sku: "H03472", // Por favor, adicione o SKU se tiver
-        price: 80.00, // POR FAVOR, SUBSTITUA PELO PREÇO REAL
-        image: "https://img.hypeboost.com/products/adidas-originals-campus-00s-dark-green/w900/img01.jpg", // POR FAVOR, SUBSTITUA PELA URL REAL DA IMAGEM
+        sku: "H03472",
+        price: 80.00,
+        image: "https://img.hypeboost.com/products/adidas-originals-campus-00s-dark-green/w900/img01.jpg",
         sizes: [
             { size: "35.5", qty: 1 },
             { size: "39 1/3", qty: 1 }
-        ]
+        ],
+        category: "footwear" // NOVA PROPRIEDADE PARA CATEGORIA
     },
     {
         id: 2,
@@ -19,7 +20,8 @@ const products = [
         image: "https://img.hypeboost.com/products/adidas-handball-spezial-sporty-rich-green/w900/img01.jpg",
         sizes: [
             { size: "36 2/3", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 3,
@@ -30,8 +32,9 @@ const products = [
         sizes: [
             { size: "35.5", qty: 1 },
             { size: "36", qty: 1 },
-            { size: "44.5", qty: 1 } // Note que este tamanho aparece mais abaixo na sua lista, agrupei aqui.
-        ]
+            { size: "44.5", qty: 1 }
+        ],
+        category: "footwear"
     },
     {
         id: 4,
@@ -41,19 +44,21 @@ const products = [
         image: "https://szopex.blob.core.windows.net/shops/media/f1000/2023/adidas/214937/adidas-campus-00s-core-black-hq8708-66605a93a67a6.webp",
         sizes: [
             { size: "36", qty: 1 },
-            { size: "37 1/3", qty: 1 }, // Note que este tamanho aparece mais abaixo na sua lista, agrupei aqui.
-            { size: "38", qty: 1 } // Note que este tamanho aparece mais abaixo na sua lista, agrupei aqui.
-        ]
+            { size: "37 1/3", qty: 1 },
+            { size: "38", qty: 1 }
+        ],
+        category: "footwear"
     },
     {
         id: 5,
-        name: "adidas Campus 00s Dark Green White (Kids)", // Assume-se que é o mesmo modelo do primeiro, mas para Kids
+        name: "adidas Campus 00s Dark Green White (Kids)",
         sku: "IH7492",
         price: 0.00,
         image: "https://mthorshop.com/cdn/shop/products/adidas-campus-00s-dark-green-cloud-white-enfant-1.png?v=1715339115",
         sizes: [
             { size: "36 2/3", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 6,
@@ -63,7 +68,8 @@ const products = [
         image: "https://img.hypeboost.com/products/nike-dunk-high-aluminum-w/w900/img01.jpg",
         sizes: [
             { size: "36.5", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 7,
@@ -73,7 +79,8 @@ const products = [
         image: "https://collectkicks.pt/cdn/shop/files/AdidasCampus00sGreyWhiteGSlateral_1080x.webp?v=1710785206",
         sizes: [
             { size: "36 2/3", qty: 2 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 8,
@@ -83,7 +90,8 @@ const products = [
         image: "https://img.hypeboost.com/products/adidas-handball-spezial-sporty-rich-pink/w900/img01.jpg",
         sizes: [
             { size: "35.5", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 9,
@@ -93,7 +101,8 @@ const products = [
         image: "https://img.hypeboost.com/products/nike-dunk-low-unc-2021-gs/w900/img01.jpg",
         sizes: [
             { size: "38", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 10,
@@ -103,7 +112,8 @@ const products = [
         image: "https://img.hypeboost.com/products/nike-dunk-low-pink-corduroy-w/w900/img01.jpg",
         sizes: [
             { size: "38.5", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 11,
@@ -113,17 +123,19 @@ const products = [
         image: "https://img.hypeboost.com/products/adidas-samba-og-cream-white-sand-strata-womens/w900/img01.jpg",
         sizes: [
             { size: "38 2/3", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 12,
-        name: "Ami Paris Small Red Ami De Coeur T-shirt- White", // Não sei se é diferente do primeiro DG White
+        name: "Ami Paris Small Red Ami De Coeur T-shirt- White",
         sku: "BFUTS001.724",
         price: 0.00,
         image: "https://hypevision.pt/cdn/shop/files/amiwhitetee-single.jpg?v=1751637812&width=720",
         sizes: [
             { size: "M", qty: 1 }
-        ]
+        ],
+        category: "clothing" // CATEGORIA: CLOTHING
     },
     {
         id: 13,
@@ -133,7 +145,8 @@ const products = [
         image: "https://img.hypeboost.com/products/adidas-handball-spezial-aluminum-core-black-womens/w900/img01.jpg",
         sizes: [
             { size: "39 1/3", qty: 2 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 14,
@@ -142,8 +155,9 @@ const products = [
         price: 0.00,
         image: "https://images1.vinted.net/t/04_00c63_DwS2vKnTgH6uydToLTeuJULP/f800/1743872946.jpeg?s=c97a457732377bedd379ba6939cc2ebc747a2c16",
         sizes: [
-            { size: "Tamanho Unico", qty: 1 }
-        ]
+            { size: "Tamanho Unico", qty: 1 } // Mantém aqui para o caso de teres outros produtos de "Tamanho Único"
+        ],
+        category: "accessories" // CATEGORIA: ACCESSORIES ou outro que aches melhor para chapéus
     },
     {
         id: 15,
@@ -153,7 +167,8 @@ const products = [
         image: "https://img.hypeboost.com/products/air-jordan-1-retro-high-og-palomino/w900/img01.jpg",
         sizes: [
             { size: "40", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 16,
@@ -163,7 +178,8 @@ const products = [
         image: "https://img.hypeboost.com/products/nike-dunk-low-cacao-wow-w/w900/img01.jpg",
         sizes: [
             { size: "40", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 17,
@@ -173,7 +189,8 @@ const products = [
         image: "https://img.hypeboost.com/products/nike-sb-dunk-low-white-gum/w900/img01.jpg",
         sizes: [
             { size: "40", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 18,
@@ -183,9 +200,9 @@ const products = [
         image: "https://img.hypeboost.com/products/nike-dunk-low-midnight-navy-university-blue/w900/img01.jpg",
         sizes: [
             { size: "40.5", qty: 1 },
-            { size: "42.5", qty: 2 }, // Note que este tamanho aparece mais abaixo na sua lista, agrupei aqui.
-             // Note que este tamanho aparece mais abaixo na sua lista, agrupei aqui.
-        ]
+            { size: "42.5", qty: 2 },
+        ],
+        category: "footwear"
     },
     {
         id: 19,
@@ -195,7 +212,8 @@ const products = [
         image: "https://img.hypeboost.com/products/nike-sb-dunk-low-j-pack-chicago/w900/img01.jpg",
         sizes: [
             { size: "40.5", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 20,
@@ -205,7 +223,8 @@ const products = [
         image: "https://img.hypeboost.com/products/nike-air-max-95-corteiz-honey-black/w900/img01.jpg",
         sizes: [
             { size: "41", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 21,
@@ -215,7 +234,8 @@ const products = [
         image: "https://img.hypeboost.com/products/nike-sb-dunk-low-pro-iso-orange-label-grey-gum/w900/img01.jpg",
         sizes: [
             { size: "41", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 22,
@@ -225,7 +245,8 @@ const products = [
         image: "https://img.hypeboost.com/products/adidas-yeezy-slide-bone-2022/w900/img01.jpg",
         sizes: [
             { size: "43", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 23,
@@ -235,7 +256,8 @@ const products = [
         image: "https://img.hypeboost.com/products/nike-sb-dunk-low-city-of-love-light-bone/w900/img01.jpg",
         sizes: [
             { size: "44", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 24,
@@ -245,7 +267,8 @@ const products = [
         image: "https://img.hypeboost.com/products/the-powerpuff-girls-x-nike-sb-dunk-low-blossom/w900/img01.jpg",
         sizes: [
             { size: "44", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 25,
@@ -255,7 +278,8 @@ const products = [
         image: "https://img.hypeboost.com/products/yeezy-slide-slate-marine/w900/img01.jpg",
         sizes: [
             { size: "44.5", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 26,
@@ -265,9 +289,10 @@ const products = [
         image: "https://img.hypeboost.com/products/youth-of-paris-x-adidas-campus-00s-black/w900/img01.jpg",
         sizes: [
             { size: "46", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
-     {
+    {
         id: 27,
         name: "Jordan 1 Retro High OG SP Union LA Bephies Beauty Supply Summer of ‘96",
         sku: "FD2565-100",
@@ -275,7 +300,8 @@ const products = [
         image: "https://www.resellzonecesena.com/cdn/shop/files/air-jordan-1-retro-high-og-sp-union-la-bephies-beauty-supply-summer-of-96-fd2565-100-resellzone.jpg?v=1717598769",
         sizes: [
             { size: "40", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 28,
@@ -285,9 +311,10 @@ const products = [
         image: "https://img.hypeboost.com/products/nike-dunk-low-white-black-2021-w/w900/img01.jpg",
         sizes: [
             { size: "36", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
-     {
+    {
         id: 29,
         name: "adidas Yeezy Slide Azure",
         sku: "ID4133",
@@ -295,7 +322,8 @@ const products = [
         image: "https://decokicks.pt/cdn/shop/files/unnamed_d4eb9af9-510f-4ddf-84d7-e94ec6afebc6.png?v=1704899477",
         sizes: [
             { size: "43", qty: 1 }
-        ]
+        ],
+        category: "footwear"
     },
     {
         id: 30,
@@ -305,31 +333,31 @@ const products = [
         image: "https://images.stockx.com/images/Corteiz-Car-Crash-Tee-White.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1690990064",
         sizes: [
             { size: "S", qty: 1 }
-        ]
+        ],
+        category: "clothing" // CATEGORIA: CLOTHING
     },
 ];
 
 // Variáveis de estado
-let currentFilter = 'all'; // 'all', 'price-asc', 'price-desc'
+let currentFilter = 'all';
 let currentSearchTerm = '';
-let selectedSizes = []; // AGORA É UM ARRAY PARA MULTIPLAS SELEÇÕES DE TAMANHO
-
+let selectedSizes = [];
 
 // Referências DOM
 const productGrid = document.getElementById('productGrid');
 const searchInput = document.getElementById('searchInput');
-
-// Seleciona os botões de filtro de ordenação (Padrão, Menor-Maior, Maior-Menor)
-// Excluímos o toggleSizeFilterBtn para não o incluir nesta coleção, pois ele tem um comportamento diferente.
 const filterButtons = document.querySelectorAll('.controls .filter-btn:not(#toggleSizeFilterBtn)');
-
 const toggleSizeFilterBtn = document.getElementById('toggleSizeFilterBtn');
 const sizeFilterDropdown = document.getElementById('sizeFilterDropdown');
-const footwearSizeOptions = document.getElementById('footwearSizeOptions');
+const footwearSizeOptionsDiv = document.getElementById('footwearSizeOptions'); // Renomeado para evitar conflito
+const clothingSizeOptionsDiv = document.getElementById('clothingSizeOptions'); // NOVO: Referência para a div de Clothing
 const applySizeFilterBtn = document.getElementById('applySizeFilterBtn');
 const selectedSizeChipsContainer = document.getElementById('selectedSizeChipsContainer');
 const selectedSizeChipsWrapper = document.getElementById('selectedSizeChipsWrapper');
 
+
+// --- DEFINIÇÃO DOS TAMANHOS FIXOS DE ROUPA ---
+const CLOTHING_SIZES = ["XS", "S", "M", "L", "XL", "XXL"]; // Tamanhos de roupa como pediste
 
 // Função para exibir os produtos
 function displayProducts(productsToDisplay) {
@@ -346,6 +374,9 @@ function displayProducts(productsToDisplay) {
 
         // Cria a lista de tamanhos disponíveis com quantidade e classe out-of-stock
         const sizesHtml = product.sizes.map(s => {
+            // Ignora "Tamanho Unico" ao exibir nos cards
+            if (s.size === "Tamanho Unico") return ''; 
+
             const qtyDisplay = s.qty > 0 ? ` (${s.qty})` : '';
             const outOfStockClass = s.qty === 0 ? ' out-of-stock' : '';
             return `<span class="size-tag-display${outOfStockClass}">${s.size}${qtyDisplay}</span>`;
@@ -385,12 +416,16 @@ function filterAndSortProducts() {
         );
     }
 
-    // 2. Filtrar por tamanhos selecionados (verifica se o produto tem PELO MENOS UM dos tamanhos selecionados com qty > 0)
+    // 2. Filtrar por tamanhos selecionados
     if (selectedSizes.length > 0) {
         filtered = filtered.filter(product => {
-            return selectedSizes.some(selectedSize =>
-                product.sizes.some(s => s.size === selectedSize && s.qty > 0)
-            );
+            return selectedSizes.some(selectedSize => {
+                // Ignora "Tamanho Unico" nos produtos ao filtrar, a menos que tenhas uma categoria específica para isso
+                if (selectedSize === "Tamanho Unico") return false; 
+                
+                // Verifica se o produto tem o tamanho selecionado E se a quantidade é > 0
+                return product.sizes.some(s => s.size === selectedSize && s.qty > 0);
+            });
         });
     }
 
@@ -404,19 +439,22 @@ function filterAndSortProducts() {
     displayProducts(filtered);
 }
 
-// Função para gerar as tags de tamanho únicas para o pop-up
-function generateUniqueSizeTags() {
-    const allSizes = new Set();
+// Função para gerar as tags de tamanho para o pop-up
+function generateSizeOptionsInDropdown() {
+    // 1. Coleta tamanhos de Calçado (apenas de produtos de calçado e em stock)
+    const footwearSizes = new Set();
     products.forEach(product => {
-        product.sizes.forEach(s => {
-            if (s.qty > 0) { // Apenas tamanhos em stock
-                allSizes.add(s.size);
-            }
-        });
+        if (product.category === 'footwear') {
+            product.sizes.forEach(s => {
+                if (s.qty > 0 && s.size !== "Tamanho Unico") { // Adicionado s.size !== "Tamanho Unico" para garantir
+                    footwearSizes.add(s.size);
+                }
+            });
+        }
     });
 
-    // Lógica de ordenação personalizada para tamanhos (ex: "35 1/2" antes de "36")
-    const sortedSizes = Array.from(allSizes).sort((a, b) => {
+    // Ordenação personalizada para tamanhos de calçado
+    const sortedFootwearSizes = Array.from(footwearSizes).sort((a, b) => {
         const parseSize = (sizeStr) => {
             sizeStr = sizeStr.replace(',', '.').trim();
             if (sizeStr.includes(' ')) {
@@ -442,8 +480,9 @@ function generateUniqueSizeTags() {
         return a.localeCompare(b);
     });
 
-    footwearSizeOptions.innerHTML = ''; // Limpa a secção
-    sortedSizes.forEach(size => {
+    // Popula a secção de calçado
+    footwearSizeOptionsDiv.innerHTML = '';
+    sortedFootwearSizes.forEach(size => {
         const sizeTag = document.createElement('button');
         sizeTag.classList.add('size-tag');
         sizeTag.textContent = size;
@@ -452,20 +491,42 @@ function generateUniqueSizeTags() {
         if (selectedSizes.includes(size)) {
             sizeTag.classList.add('selected');
         }
+        sizeTag.addEventListener('click', handleSizeTagClick); // Reusa o handler de clique
+        footwearSizeOptionsDiv.appendChild(sizeTag);
+    });
 
-        sizeTag.addEventListener('click', () => {
-            if (sizeTag.classList.contains('selected')) {
-                sizeTag.classList.remove('selected');
-                selectedSizes = selectedSizes.filter(s => s !== size);
-            } else {
-                sizeTag.classList.add('selected');
-                selectedSizes.push(size);
-            }
-            updateSelectedSizeChips(); // Atualiza os chips em tempo real
-        });
-        footwearSizeOptions.appendChild(sizeTag);
+    // 2. Popula os tamanhos de Roupa (usando o array fixo)
+    clothingSizeOptionsDiv.innerHTML = '';
+    CLOTHING_SIZES.forEach(size => {
+        const sizeTag = document.createElement('button');
+        sizeTag.classList.add('size-tag');
+        sizeTag.textContent = size;
+        sizeTag.dataset.size = size;
+
+        // Se o tamanho estiver selecionado, marca como selecionado
+        if (selectedSizes.includes(size)) {
+            sizeTag.classList.add('selected');
+        }
+        // Adiciona a lógica de clique
+        sizeTag.addEventListener('click', handleSizeTagClick); // Reusa o handler de clique
+        clothingSizeOptionsDiv.appendChild(sizeTag);
     });
 }
+
+// Handler para cliques nos botões de tamanho (reutilizado para calçado e roupa)
+function handleSizeTagClick() {
+    const size = this.dataset.size;
+    if (this.classList.contains('selected')) {
+        this.classList.remove('selected');
+        selectedSizes = selectedSizes.filter(s => s !== size);
+    } else {
+        this.classList.add('selected');
+        selectedSizes.push(size);
+    }
+    updateSelectedSizeChips(); // Atualiza os chips em tempo real
+    // Não chama filterAndSortProducts() aqui, só ao clicar em "Aplicar Filtro"
+}
+
 
 // Função para atualizar os chips de tamanho selecionados
 function updateSelectedSizeChips() {
@@ -479,24 +540,27 @@ function updateSelectedSizeChips() {
     }
 
     const sortedSelectedSizes = [...selectedSizes].sort((a, b) => {
+        // Lógica de ordenação para chips (prioriza números, depois alfabético)
         const parseSize = (sizeStr) => {
             sizeStr = sizeStr.replace(',', '.').trim();
-            if (sizeStr.includes(' ')) {
-                const parts = sizeStr.split(' ');
-                let whole = parseFloat(parts[0]);
-                if (parts[1] === '1/2') return whole + 0.5;
-                if (parts[1] === '1/3') return whole + 1/3;
-                if (parts[1] === '2/3') return whole + 2/3;
+            if (!isNaN(parseFloat(sizeStr))) {
+                return parseFloat(sizeStr);
             }
-            return parseFloat(sizeStr);
+            // Para tamanhos como XS, S, M, L, XL
+            const order = { "XS": 1, "S": 2, "M": 3, "L": 4, "XL": 5, "XXL": 6 };
+            return order[sizeStr] || 99; // Retorna um número alto para tamanhos não reconhecidos
         };
         const numA = parseSize(a);
         const numB = parseSize(b);
 
-        if (!isNaN(numA) && !isNaN(numB)) {
+        if (numA !== 99 && numB !== 99) { // Ambos são tamanhos de roupa ou numéricos
             return numA - numB;
+        } else if (numA !== 99) { // A é roupa/numérico, B não
+            return -1;
+        } else if (numB !== 99) { // B é roupa/numérico, A não
+            return 1;
         }
-        return a.localeCompare(b);
+        return a.localeCompare(b); // Ambos são outros tipos, ordena alfabeticamente
     });
 
     sortedSelectedSizes.forEach(size => {
@@ -510,7 +574,7 @@ function updateSelectedSizeChips() {
             const sizeToRemove = event.target.dataset.size;
             selectedSizes = selectedSizes.filter(s => s !== sizeToRemove);
             updateSelectedSizeChips();
-            generateUniqueSizeTags(); // Atualiza o estado das tags no pop-up
+            generateSizeOptionsInDropdown(); // Atualiza o estado das tags no pop-up
             filterAndSortProducts();
         });
         selectedSizeChipsContainer.appendChild(chip);
@@ -526,15 +590,14 @@ searchInput.addEventListener('input', (event) => {
     filterAndSortProducts();
 });
 
-// Botões de filtro (Padrão, Menor-Maior, Maior-Menor)
+// Botões de filtro de ordenação (Padrão, Menor-Maior, Maior-Menor)
 filterButtons.forEach(button => {
     button.addEventListener('click', () => {
-        filterButtons.forEach(btn => btn.classList.remove('active')); // Desativa outros botões de ordenação
+        filterButtons.forEach(btn => btn.classList.remove('active'));
         toggleSizeFilterBtn.classList.remove('active'); // Desativa o botão "Filtrar por Tamanho" também, se estiver ativo
-        button.classList.add('active'); // Ativa o botão clicado
+        button.classList.add('active');
 
-        // Esconde o dropdown de tamanho se ele estiver visível
-        sizeFilterDropdown.classList.remove('show');
+        sizeFilterDropdown.classList.remove('show'); // Esconde o dropdown de tamanho
 
         currentFilter = button.dataset.filter;
         filterAndSortProducts();
@@ -544,15 +607,13 @@ filterButtons.forEach(button => {
 // Event Listener para o botão "Filtrar por Tamanho" (para mostrar/esconder o pop-up)
 toggleSizeFilterBtn.addEventListener('click', () => {
     sizeFilterDropdown.classList.toggle('show');
-    toggleSizeFilterBtn.classList.toggle('active'); // Ativa/desativa o próprio botão de toggle
+    toggleSizeFilterBtn.classList.toggle('active');
 
     if (sizeFilterDropdown.classList.contains('show')) {
-        // Se o dropdown for aberto, remove 'active' dos outros botões de ordenação
         filterButtons.forEach(btn => btn.classList.remove('active'));
-        generateUniqueSizeTags(); // Garante que as tags no pop-up estão atualizadas cada vez que abre
+        generateSizeOptionsInDropdown(); // Garante que as tags no pop-up estão atualizadas cada vez que abre
     } else {
-        // Se o dropdown for fechado (sem aplicar filtro explicitamente),
-        // e não há tamanhos selecionados, o botão padrão deve ficar ativo.
+        // Se o dropdown for fechado (sem aplicar filtro explicitamente), e não há tamanhos selecionados, o botão padrão deve ficar ativo.
         if (selectedSizes.length === 0) {
             document.querySelector('[data-filter="all"]').classList.add('active');
         }
@@ -562,17 +623,13 @@ toggleSizeFilterBtn.addEventListener('click', () => {
 
 // Event Listener para o botão "Aplicar Filtro" no pop-up
 applySizeFilterBtn.addEventListener('click', () => {
-    sizeFilterDropdown.classList.remove('show'); // Esconde o pop-up
+    sizeFilterDropdown.classList.remove('show');
 
-    // Se há tamanhos selecionados, o botão "Filtrar por Tamanho" deve ficar ativo (preto).
-    // Caso contrário, deve voltar ao estado normal.
     if (selectedSizes.length > 0) {
         toggleSizeFilterBtn.classList.add('active');
-        // Remove a classe 'active' de outros botões de ordenação se algum tamanho for aplicado
         filterButtons.forEach(btn => btn.classList.remove('active'));
     } else {
         toggleSizeFilterBtn.classList.remove('active');
-        // Se nenhum tamanho for selecionado, o botão "Padrão" deve ser ativo.
         document.querySelector('[data-filter="all"]').classList.add('active');
     }
 
@@ -581,12 +638,9 @@ applySizeFilterBtn.addEventListener('click', () => {
 
 // Fechar o dropdown de tamanho se clicar fora dele
 document.addEventListener('click', (event) => {
-    // Verifica se o clique foi fora do botão de toggle e fora do próprio dropdown
-    // Adiciona searchInput.contains(event.target) para não fechar se clicar na search bar
     if (!toggleSizeFilterBtn.contains(event.target) && !sizeFilterDropdown.contains(event.target) && !searchInput.contains(event.target)) {
         if (sizeFilterDropdown.classList.contains('show')) {
             sizeFilterDropdown.classList.remove('show');
-            // Se fechar e não houver tamanhos selecionados, reativa o botão Padrão
             if (selectedSizes.length === 0) {
                 toggleSizeFilterBtn.classList.remove('active');
                 document.querySelector('[data-filter="all"]').classList.add('active');
@@ -597,7 +651,6 @@ document.addEventListener('click', (event) => {
 
 
 // --- Inicialização ---
-// Apenas renderiza os produtos inicialmente, os tamanhos são gerados ao abrir o pop-up
 document.addEventListener('DOMContentLoaded', () => {
     // Certifica-te que o botão 'Padrão' está ativo na carga inicial
     document.querySelector('[data-filter="all"]').classList.add('active');
