@@ -142,7 +142,7 @@ const products = [
         price: 0.00,
         image: "https://images1.vinted.net/t/04_00c63_DwS2vKnTgH6uydToLTeuJULP/f800/1743872946.jpeg?s=c97a457732377bedd379ba6939cc2ebc747a2c16",
         sizes: [
-            { size: "", qty: 1 }
+            { size: "Tamanho Unico", qty: 1 }
         ]
     },
     {
@@ -276,7 +276,37 @@ const products = [
         sizes: [
             { size: "40", qty: 1 }
         ]
-    }
+    },
+    {
+        id: 28,
+        name: "Nike Dunk Low Retro White Black Panda (Women's)",
+        sku: "DD1503-101",
+        price: 0.00,
+        image: "https://img.hypeboost.com/products/nike-dunk-low-white-black-2021-w/w900/img01.jpg",
+        sizes: [
+            { size: "36", qty: 1 }
+        ]
+    },
+     {
+        id: 29,
+        name: "adidas Yeezy Slide Azure",
+        sku: "ID4133",
+        price: 0.00,
+        image: "https://decokicks.pt/cdn/shop/files/unnamed_d4eb9af9-510f-4ddf-84d7-e94ec6afebc6.png?v=1704899477",
+        sizes: [
+            { size: "43", qty: 1 }
+        ]
+    },
+    {
+        id: 30,
+        name: "Corteiz Car Crash Tee White",
+        sku: "n/a",
+        price: 0.00,
+        image: "https://images.stockx.com/images/Corteiz-Car-Crash-Tee-White.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1690990064",
+        sizes: [
+            { size: "S", qty: 1 }
+        ]
+    },
 ];
 
 // Variáveis de estado
