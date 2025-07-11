@@ -47,7 +47,7 @@ const products = [
             { size: "36 2/3", qty: 1 }
         ],
         category: "footwear"
-    }
+    },
     {
         id: 26,
         name: "adidas Campus 00s Youth of Paris",
