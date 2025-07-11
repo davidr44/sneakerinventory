@@ -394,7 +394,7 @@ function displayProducts(productsToDisplay) {
                 ${sizesHtml}
             </div>
             <div class="product-actions">
-                <a href="https://wa.me/351925263235?text=Ol%C3%A1,%20tenho%20interesse%20no%20${encodeURIComponent(product.name)}%20(SKU:%20${product.sku}).%20Pode%20dar-me%20mais%20informa%C3%A7%C3%B5es?" target="_blank" class="whatsapp-btn">
+                <a href="https://wa.me/351925263235?text=Ol%C3%A1,%20tenho%20interesse%20no%20%produto%20${encodeURIComponent(product.name)}%20(SKU:%20${product.sku}).%20Pode%20dar-me%20mais%20informa%C3%A7%C3%B5es?" target="_blank" class="whatsapp-btn">
                     <i class="fab fa-whatsapp"></i> Contactar
                 </a>
             </div>
