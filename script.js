@@ -618,3 +618,4 @@ document.addEventListener('DOMContentLoaded', () => {
     filterAndSortProducts(); // Exibe os produtos iniciais
 });
 
+
