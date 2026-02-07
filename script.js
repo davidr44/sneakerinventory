@@ -17,7 +17,7 @@ const products = [
         name: "adidas Campus 00s Core Black",
         sku: "HQ8708",
         price: 80.00,
-        image: "https://selecteu.com/pt-pt/products/campus-00s-core-black?srsltid=AfmBOopKz-VgkesTjtyZSPo8zHzfCKDzaH1IaLtGJCTTI5dXHV6yzj5C",
+        image: "https://newcop.com/cdn/shop/files/adidas-campus-00s-core-black-1_2000x_f891c99f-d7be-41e6-aa92-9000abde32d0.webp?height=600&v=1682784882",
         sizes: [
             { size: "36", qty: 1 },
             { size: "38", qty: 1 }
@@ -567,4 +567,5 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSelectedSizeChips(); // Garante que chips existentes (se houver, ex: na recarga) são mostrados
     filterAndSortProducts(); // Exibe os produtos iniciais
 });
+
 
