@@ -8,7 +8,6 @@ const products = [
         price: 70.00,
         image: "https://hypevision.pt/cdn/shop/files/campusg-front.jpg?v=1751637933&width=720",
         sizes: [
-            { size: "35.5", qty: 1 },
             { size: "39 1/3", qty: 1 }
         ],
         category: "footwear"
@@ -18,10 +17,9 @@ const products = [
         name: "adidas Campus 00s Core Black",
         sku: "HQ8708",
         price: 80.00,
-        image: "https://www.resellzonecesena.com/cdn/shop/files/adidas-campus-00s-black-hq6638-resellzone.jpg?v=1714558427&width=700",
+        image: "https://selecteu.com/pt-pt/products/campus-00s-core-black?srsltid=AfmBOopKz-VgkesTjtyZSPo8zHzfCKDzaH1IaLtGJCTTI5dXHV6yzj5C",
         sizes: [
             { size: "36", qty: 1 },
-            { size: "37 1/3", qty: 1 },
             { size: "38", qty: 1 }
         ],
         category: "footwear"
@@ -92,31 +90,6 @@ const products = [
         ],
         category: "footwear"
     },
-
-    // Nike SB Dunks
-    {
-        id: 19,
-        name: "Nike SB Dunk Low Pro J-Pack Chicago (2020/2024)",
-        sku: "BQ6817-600",
-        price: 135.00,
-        image: "https://www.resellzonecesena.com/cdn/shop/files/nike-sb-dunk-low-pro-j-pack-chicago-bq6817-600-resellzone.jpg?v=1716623695&width=900",
-        sizes: [
-            { size: "40.5", qty: 1 }
-        ],
-        category: "footwear"
-    },
-    {
-        id: 24,
-        name: "Nike SB Dunk Low The Powerpuff Girls Blossom",
-        sku: "FD2631-600",
-        price: 299.00,
-        image: "https://www.resellzonecesena.com/cdn/shop/files/nike-sb-dunk-low-the-powerpuff-girls-blossom-fd2631-600-resellzone.jpg?v=1716625325&width=900",
-        sizes: [
-            { size: "44", qty: 1 }
-        ],
-        category: "footwear"
-    },
-
     // Nike Dunk Low
     {
         id: 3,
@@ -126,7 +99,6 @@ const products = [
         image: "https://www.resellzonecesena.com/cdn/shop/files/nike-dunk-low-photon-dust-dd1503-103-resellzone.jpg?v=1717965290&width=700",
         sizes: [
             { size: "35.5", qty: 1 },
-            { size: "36", qty: 1 },
             { size: "44.5", qty: 1 }
         ],
         category: "footwear"
@@ -160,8 +132,7 @@ const products = [
         price: 105.00,
         image: "https://i0.wp.com/www.garmspot.com/wp-content/uploads/2024/04/nike-dunk-low-navy-baby-blue_w1024_h1024_pad_-jpg.webp?fit=1024%2C1280&ssl=1",
         sizes: [
-            { size: "40.5", qty: 1 },
-            { size: "42.5", qty: 2 },
+            { size: "42.5", qty: 2 }
         ],
         category: "footwear"
     },
@@ -214,17 +185,6 @@ const products = [
         category: "footwear"
     },
     {
-        id: 25,
-        name: "adidas Yeezy Slide Slate Marine",
-        sku: "ID2349",
-        price: 120.00,
-        image: "https://www.resellzonecesena.com/cdn/shop/files/adidas-yeezy-slide-slate-marine-id2349-resellzone.jpg?v=1718714152&width=900",
-        sizes: [
-            { size: "44.5", qty: 1 }
-        ],
-        category: "footwear"
-    },
-    {
         id: 29,
         name: "adidas Yeezy Slide Azure",
         sku: "ID4133",
@@ -259,17 +219,7 @@ const products = [
         ],
         category: "footwear"
     },
-    {
-        id: 20,
-        name: "Nike Air Max 95 Corteiz Honey Black",
-        sku: "FB2709-003",
-        price: 240.00,
-        image: "https://www.resellzonecesena.com/cdn/shop/files/nike-air-max-95-corteiz-honey-black-fb2709-003-resellzone.jpg?v=1746002333&width=900",
-        sizes: [
-            { size: "41", qty: 1 }
-        ],
-        category: "footwear"
-    },
+   
 
     // T-shirts
     {
@@ -617,3 +567,4 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSelectedSizeChips(); // Garante que chips existentes (se houver, ex: na recarga) são mostrados
     filterAndSortProducts(); // Exibe os produtos iniciais
 });
+
