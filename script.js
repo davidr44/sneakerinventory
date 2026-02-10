@@ -313,8 +313,8 @@ function displayProducts(productsToDisplay) {
         if (product.originalPrice) {
             // Se tiver desconto: Mostra o antigo riscado + o novo
             priceHtml = `
-                <span class="original-price">€${product.originalPrice.toFixed(2).replace('.', ',')}</span>
                 <span class="current-price">€${product.price.toFixed(2).replace('.', ',')}</span>
+                <span class="original-price">€${product.originalPrice.toFixed(2).replace('.', ',')}</span>
             `;
         } else {
             // Se não tiver desconto: Mostra só o preço normal
@@ -602,6 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSelectedSizeChips(); // Garante que chips existentes (se houver, ex: na recarga) são mostrados
     filterAndSortProducts(); // Exibe os produtos iniciais
 });
+
 
 
 
