@@ -19,7 +19,7 @@ const products = [
         sku: "HQ8708",
         price: 70.00,
         originalPrice: 120.00,
-        image: "https://hypevision.pt/cdn/shop/files/campusblack-front.jpg?v=1751637968",
+        image: "https://onsize.eu/cdn/shop/files/adidas-campus-00s-core-black-3024934.webp?v=1767459971&width=1000",
         sizes: [
             { size: "36", qty: 1 },
             { size: "38", qty: 1 }
@@ -602,6 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSelectedSizeChips(); // Garante que chips existentes (se houver, ex: na recarga) são mostrados
     filterAndSortProducts(); // Exibe os produtos iniciais
 });
+
 
 
 
