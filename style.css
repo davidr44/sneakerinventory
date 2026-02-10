@@ -286,11 +286,29 @@ header .container {
     margin-bottom: 10px;
 }
 
+/* Atualiza a classe .product-price para permitir alinhar os dois preços */
 .product-price {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #007bff; /* Cor de destaque para o preço */
+    color: #007bff; /* Azul padrão */
     margin-bottom: 10px;
+    display: flex; /* Para ficarem lado a lado */
+    align-items: center; /* Alinhar verticalmente */
+    gap: 10px; /* Espaço entre o preço riscado e o novo */
+}
+
+/* Estilo para o preço antigo (Riscado e Cinzento) */
+.original-price {
+    text-decoration: line-through; /* O risco no meio */
+    color: #999; /* Cinzento */
+    font-size: 0.85em; /* Ligeiramente mais pequeno */
+    font-weight: normal; /* Sem negrito */
+}
+
+/* O preço atual mantém-se com a cor do pai (.product-price), não precisamos de mudar muito */
+.current-price {
+    color: #007bff;
+    font-weight: bold;
 }
 
 /* Estilo para o contêiner de tamanhos disponíveis */
@@ -556,3 +574,4 @@ footer {
     }
 
 }
+
