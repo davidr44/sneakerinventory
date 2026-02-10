@@ -306,10 +306,10 @@ productCard.innerHTML = `
     </div>
     <div class="product-actions">
         <a href="https://wa.me/351925263235?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20${encodeURIComponent(product.name)}%20(SKU:%20${product.sku})" target="_blank" class="whatsapp-btn">
-            <i class="fab fa-whatsapp"></i> WhatsApp
+            <i class="fab fa-whatsapp"></i> Comprar
         </a>
         <a href="https://ig.me/m/44snkrs.pt" target="_blank" class="instagram-btn">
-            <i class="fab fa-instagram"></i> Instagram
+            <i class="fab fa-instagram"></i> Comprar
         </a>
     </div>
 `;
@@ -572,6 +572,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSelectedSizeChips(); // Garante que chips existentes (se houver, ex: na recarga) são mostrados
     filterAndSortProducts(); // Exibe os produtos iniciais
 });
+
 
 
 
