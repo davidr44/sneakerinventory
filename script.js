@@ -6,6 +6,7 @@ const products = [
         name: "adidas Campus 00s Dark Green White Cloud White",
         sku: "H03472",
         price: 70.00,
+        originalPrice: 120.00,
         image: "https://hypevision.pt/cdn/shop/files/campusg-front.jpg?v=1751637933&width=720",
         sizes: [
             { size: "39 1/3", qty: 1 }
@@ -572,6 +573,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSelectedSizeChips(); // Garante que chips existentes (se houver, ex: na recarga) são mostrados
     filterAndSortProducts(); // Exibe os produtos iniciais
 });
+
 
 
 
