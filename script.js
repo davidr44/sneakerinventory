@@ -271,6 +271,7 @@ const selectedSizeChipsWrapper = document.getElementById('selectedSizeChipsWrapp
 const CLOTHING_SIZES = ["XS", "S", "M", "L", "XL", "XXL"]; // Tamanhos de roupa como pediste
 
 // Função para exibir os produtos
+// Função para exibir os produtos
 function displayProducts(productsToDisplay) {
     productGrid.innerHTML = '';
 
@@ -283,7 +284,7 @@ function displayProducts(productsToDisplay) {
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
 
-        // 1. Lógica dos Tamanhos (Isto já tinhas, mantém-se igual)
+        // 1. Lógica dos Tamanhos (Mantida igual)
         const sizesHtml = product.sizes.map(s => {
             if (s.size === "Tamanho Unico") return ''; 
             const qtyDisplay = s.qty > 0 ? ` (${s.qty})` : '';
@@ -291,7 +292,7 @@ function displayProducts(productsToDisplay) {
             return `<span class="size-tag-display${outOfStockClass}">${s.size}${qtyDisplay}</span>`;
         }).join('');
 
-        // 2. NOVA LÓGICA DE PREÇO (Adicionada aqui)
+        // 2. NOVA LÓGICA DE PREÇO (Corrigida e Integrada)
         let priceHtml = '';
         if (product.originalPrice) {
             // Se tiver desconto: Mostra o antigo riscado + o novo
@@ -304,7 +305,7 @@ function displayProducts(productsToDisplay) {
             priceHtml = `€${product.price.toFixed(2).replace('.', ',')}`;
         }
 
-        // 3. HTML DO CARD (Atualizado para usar ${priceHtml})
+        // 3. HTML DO CARD (Usa a variável priceHtml)
         productCard.innerHTML = `
             <img src="${product.image}" alt="${product.name}">
             <div class="product-info">
@@ -330,7 +331,7 @@ function displayProducts(productsToDisplay) {
 
         productGrid.appendChild(productCard);
     });
-
+}
 // Função principal para filtrar e ordenar produtos
 function filterAndSortProducts() {
     let filtered = [...products];
@@ -585,6 +586,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSelectedSizeChips(); // Garante que chips existentes (se houver, ex: na recarga) são mostrados
     filterAndSortProducts(); // Exibe os produtos iniciais
 });
+
 
 
 
