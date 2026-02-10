@@ -292,23 +292,28 @@ function displayProducts(productsToDisplay) {
             return `<span class="size-tag-display${outOfStockClass}">${s.size}${qtyDisplay}</span>`;
         }).join('');
 
-        productCard.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
-            <div class="product-info">
-                <h3>${product.name}</h3>
-                <p class="sku">SKU: ${product.sku}</p>
-                <p class="product-price">€${product.price.toFixed(2).replace('.', ',')}</p>
-            </div>
-            <div class="available-sizes">
-                <span>Tamanhos Disponíveis:</span>
-                ${sizesHtml}
-            </div>
-            <div class="product-actions">
-                <a href="https://wa.me/351925263235?text=Ol%C3%A1,%20tenho%20interesse%20no%20produto%20${encodeURIComponent(product.name)}%20(SKU:%20${product.sku}).%20Pode%20dar-me%20mais%20informa%C3%A7%C3%B5es?" target="_blank" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Contactar
-                </a>
-            </div>
-        `;
+        // ... dentro do loop forEach da função displayProducts
+productCard.innerHTML = `
+    <img src="${product.image}" alt="${product.name}">
+    <div class="product-info">
+        <h3>${product.name}</h3>
+        <p class="sku">SKU: ${product.sku}</p>
+        <p class="product-price">€${product.price.toFixed(2).replace('.', ',')}</p>
+    </div>
+    <div class="available-sizes">
+        <span>Tamanhos Disponíveis:</span>
+        ${sizesHtml}
+    </div>
+    <div class="product-actions">
+        <a href="https://wa.me/351925263235?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20${encodeURIComponent(product.name)}%20(SKU:%20${product.sku})" target="_blank" class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="https://ig.me/m/44snkrs.pt" target="_blank" class="instagram-btn">
+            <i class="fab fa-instagram"></i> Instagram
+        </a>
+    </div>
+`;
+// ...
         productGrid.appendChild(productCard);
     });
 }
@@ -567,6 +572,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSelectedSizeChips(); // Garante que chips existentes (se houver, ex: na recarga) são mostrados
     filterAndSortProducts(); // Exibe os produtos iniciais
 });
+
 
 
 
