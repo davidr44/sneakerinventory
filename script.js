@@ -16,7 +16,7 @@ const products = [
         id: 4,
         name: "adidas Campus 00s Core Black",
         sku: "HQ8708",
-        price: 80.00,
+        price: 70.00,
         image: "https://hypevision.pt/cdn/shop/files/campusblack-front.jpg?v=1751637968",
         sizes: [
             { size: "36", qty: 1 },
@@ -28,7 +28,7 @@ const products = [
         id: 7,
         name: "adidas Campus 00s Grey Gum (Kids)",
         sku: "HQ6507",
-        price: 70.00,
+        price: 60.00,
         image: "https://hypevision.pt/cdn/shop/files/campusgrey-front.jpg?v=1751637891",
         sizes: [
             { size: "36 2/3", qty: 2 }
@@ -39,7 +39,7 @@ const products = [
         id: 5,
         name: "adidas Campus 00s Dark Green White (Kids)",
         sku: "IH7492",
-        price: 60.00,
+        price: 55.00,
         image: "https://img01.ztat.net/article/spp-media-p1/59c4a1cbd62d41159c75677e9a5fe869/afcb006d75f54509b4c62d431540fe03.jpg?imwidth=1800&filter=packshot",
         sizes: [
             { size: "36 2/3", qty: 1 }
@@ -50,7 +50,7 @@ const products = [
         id: 26,
         name: "adidas Campus 00s Youth of Paris",
         sku: "IE8349",
-        price: 120.00,
+        price: 110.00,
         image: "https://i.ebayimg.com/images/g/6ZUAAOSwgGZmppfl/s-l1200.jpg",
         sizes: [
             { size: "46", qty: 1 }
@@ -61,7 +61,7 @@ const products = [
         id: 2,
         name: "adidas Handball Spezial Sporty & Rich Green",
         sku: "IH2148",
-        price: 120.00,
+        price: 115.00,
         image: "https://www.resellzonecesena.com/cdn/shop/files/adidas-handball-spezial-sporty-rich-green-ih2148-resellzone.jpg?v=1722926991&width=700",
         sizes: [
             { size: "36 2/3", qty: 1 }
@@ -72,7 +72,7 @@ const products = [
         id: 8,
         name: "adidas Handball Spezial Sporty & Rich Pink",
         sku: "IH2610",
-        price: 125.00,
+        price: 120.00,
         image: "https://www.resellzonecesena.com/cdn/shop/files/adidas-handball-spezial-sporty-rich-pink-ih2610-resellzone.jpg?v=1717533476&width=900",
         sizes: [
             { size: "35.5", qty: 1 }
@@ -83,7 +83,7 @@ const products = [
         id: 13,
         name: "adidas Handball Spezial Aluminum - Core Black (Women's)",
         sku: "IF6562",
-        price: 85.00,
+        price: 75.00,
         image: "https://www.resellzonecesena.com/cdn/shop/files/adidas-handball-spezial-aluminum-core-black-if6562-resellzone.jpg?v=1742482381&width=900",
         sizes: [
             { size: "39 1/3", qty: 2 }
@@ -95,7 +95,7 @@ const products = [
         id: 3,
         name: "Nike Dunk Low Photon Dust (Women's)",
         sku: "DD1503-103",
-        price: 85.00,
+        price: 75.00,
         image: "https://www.resellzonecesena.com/cdn/shop/files/nike-dunk-low-photon-dust-dd1503-103-resellzone.jpg?v=1717965290&width=700",
         sizes: [
             { size: "35.5", qty: 1 },
@@ -107,7 +107,7 @@ const products = [
         id: 10,
         name: "Nike Dunk Low Pink Corduroy (Women's)",
         sku: "FN7167-100",
-        price: 180.00,
+        price: 170.00,
         image: "https://www.resellzonecesena.com/cdn/shop/files/nike-dunk-low-pink-corduroy-fn7167-100-resellzone.jpg?v=1717962392&width=900",
         sizes: [
             { size: "38.5", qty: 1 }
@@ -118,7 +118,7 @@ const products = [
         id: 16,
         name: "Nike Dunk Low Cacao Wow (Women's)",
         sku: "DD1503-124",
-        price: 90.00,
+        price: 80.00,
         image: "https://www.resellzonecesena.com/cdn/shop/files/nike-dunk-low-cacao-wow-dd1503-124-resellzone.jpg?v=1717965367&width=900",
         sizes: [
             { size: "40", qty: 1 }
@@ -129,7 +129,7 @@ const products = [
         id: 18,
         name: "Nike Dunk Low Midnight Navy University Blue",
         sku: "FN7800-400",
-        price: 105.00,
+        price: 80.00,
         image: "https://i0.wp.com/www.garmspot.com/wp-content/uploads/2024/04/nike-dunk-low-navy-baby-blue_w1024_h1024_pad_-jpg.webp?fit=1024%2C1280&ssl=1",
         sizes: [
             { size: "42.5", qty: 2 }
@@ -140,7 +140,7 @@ const products = [
         id: 28,
         name: "Nike Dunk Low Retro White Black Panda (Women's)",
         sku: "DD1503-101",
-        price: 85.00,
+        price: 70.00,
         image: "https://www.resellzonecesena.com/cdn/shop/files/nike-dunk-low-retro-white-black-panda-dd1391-100-resellzone.jpg?v=1717964863&width=900",
         sizes: [
             { size: "36", qty: 1 }
@@ -151,7 +151,7 @@ const products = [
         id: 9,
         name: "Nike Dunk Low UNC (2021) (GS)",
         sku: "CW1590-103",
-        price: 75.00,
+        price: 70.00,
         image: "https://hypevision.pt/cdn/shop/files/DUNKUNC-single.jpg?v=1738324364",
         sizes: [
             { size: "38", qty: 1 }
@@ -164,7 +164,7 @@ const products = [
         id: 6,
         name: "Nike Dunk High Aluminum (Women's)",
         sku: "DD1869-107",
-        price: 85.00,
+        price: 70.00,
         image: "https://www.resellzonecesena.com/cdn/shop/files/nike-dunk-high-aluminum-dd1869-107-resellzone.jpg?v=1716359832&width=700",
         sizes: [
             { size: "36.5", qty: 1 }
@@ -177,7 +177,7 @@ const products = [
         id: 22,
         name: "adidas Yeezy Slide Bone (2022 Restock)",
         sku: "FZ5897",
-        price: 150.00,
+        price: 130.00,
         image: "https://www.resellzonecesena.com/cdn/shop/files/adidas-yeezy-slide-bone-fz5897-resellzone.jpg?v=1714496926&width=900",
         sizes: [
             { size: "43", qty: 1 }
@@ -188,7 +188,7 @@ const products = [
         id: 29,
         name: "adidas Yeezy Slide Azure",
         sku: "ID4133",
-        price: 90.00,
+        price: 80.00,
         image: "https://www.resellzonecesena.com/cdn/shop/files/adidas-yeezy-slide-azure-id4133-resellzone.jpg?v=1714497313&width=900",
         sizes: [
             { size: "43", qty: 1 }
@@ -212,7 +212,7 @@ const products = [
         id: 27,
         name: "Jordan 1 Retro High OG SP Union LA Bephies Beauty Supply Summer of ‘96",
         sku: "FD2565-100",
-        price: 190.00,
+        price: 180.00,
         image: "https://www.resellzonecesena.com/cdn/shop/files/air-jordan-1-retro-high-og-sp-union-la-bephies-beauty-supply-summer-of-96-fd2565-100-resellzone.jpg?v=1717598769",
         sizes: [
             { size: "40", qty: 1 }
@@ -226,7 +226,7 @@ const products = [
         id: 30,
         name: "Corteiz Car Crash Tee White",
         sku: "n/a",
-        price: 50.00,
+        price: 40.00,
         image: "https://images.stockx.com/images/Corteiz-Car-Crash-Tee-White.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1690990064",
         sizes: [
             { size: "S", qty: 1 }
@@ -239,7 +239,7 @@ const products = [
         id: 14,
         name: "Corteiz Green Alcatraz Trucker Hat",
         sku: "N/A",
-        price: 35.00,
+        price: 29.90,
         image: "https://images1.vinted.net/t/04_00c63_DwS2vKnTgH6uydToLTeuJULP/f800/1743872946.jpeg?s=c97a457732377bedd379ba6939cc2ebc747a2c16",
         sizes: [
             { size: "N/A", qty: 1 }
@@ -572,6 +572,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSelectedSizeChips(); // Garante que chips existentes (se houver, ex: na recarga) são mostrados
     filterAndSortProducts(); // Exibe os produtos iniciais
 });
+
 
 
 
