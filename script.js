@@ -19,7 +19,7 @@ const products = [
         sku: "HQ8708",
         price: 70.00,
         originalPrice: 120.00,
-        image: "https://outstockzz.com/cdn/shop/files/Untitled_Project_6.png?v=1730120879",
+        image: "https://www.lisabonastreetwear.pt/cdn/shop/files/Adidas-Campus-00s-Core-Black_grande.jpg?v=1750927446",
         sizes: [
             { size: "36", qty: 1 },
             { size: "38", qty: 1 }
@@ -602,6 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSelectedSizeChips(); // Garante que chips existentes (se houver, ex: na recarga) são mostrados
     filterAndSortProducts(); // Exibe os produtos iniciais
 });
+
 
 
 
