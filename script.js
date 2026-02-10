@@ -283,41 +283,53 @@ function displayProducts(productsToDisplay) {
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
 
-        // Cria a lista de tamanhos disponíveis com quantidade e classe out-of-stock
+        // 1. Lógica dos Tamanhos (Isto já tinhas, mantém-se igual)
         const sizesHtml = product.sizes.map(s => {
-            // Ignora "Tamanho Unico" ao exibir nos cards
             if (s.size === "Tamanho Unico") return ''; 
-
             const qtyDisplay = s.qty > 0 ? ` (${s.qty})` : '';
             const outOfStockClass = s.qty === 0 ? ' out-of-stock' : '';
             return `<span class="size-tag-display${outOfStockClass}">${s.size}${qtyDisplay}</span>`;
         }).join('');
 
-        // ... dentro do loop forEach da função displayProducts
-productCard.innerHTML = `
-    <img src="${product.image}" alt="${product.name}">
-    <div class="product-info">
-        <h3>${product.name}</h3>
-        <p class="sku">SKU: ${product.sku}</p>
-        <p class="product-price">€${product.price.toFixed(2).replace('.', ',')}</p>
-    </div>
-    <div class="available-sizes">
-        <span>Tamanhos Disponíveis:</span>
-        ${sizesHtml}
-    </div>
-    <div class="product-actions">
-        <a href="https://wa.me/351925263235?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20${encodeURIComponent(product.name)}%20(SKU:%20${product.sku})" target="_blank" class="whatsapp-btn">
-            <i class="fab fa-whatsapp"></i> Comprar
-        </a>
-        <a href="https://ig.me/m/44snkrs.pt" target="_blank" class="instagram-btn">
-            <i class="fab fa-instagram"></i> Comprar
-        </a>
-    </div>
-`;
-// ...
+        // 2. NOVA LÓGICA DE PREÇO (Adicionada aqui)
+        let priceHtml = '';
+        if (product.originalPrice) {
+            // Se tiver desconto: Mostra o antigo riscado + o novo
+            priceHtml = `
+                <span class="original-price">€${product.originalPrice.toFixed(2).replace('.', ',')}</span>
+                <span class="current-price">€${product.price.toFixed(2).replace('.', ',')}</span>
+            `;
+        } else {
+            // Se não tiver desconto: Mostra só o preço normal
+            priceHtml = `€${product.price.toFixed(2).replace('.', ',')}`;
+        }
+
+        // 3. HTML DO CARD (Atualizado para usar ${priceHtml})
+        productCard.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <div class="product-info">
+                <h3>${product.name}</h3>
+                <p class="sku">SKU: ${product.sku}</p>
+                
+                <p class="product-price">${priceHtml}</p>
+                
+            </div>
+            <div class="available-sizes">
+                <span>Tamanhos Disponíveis:</span>
+                ${sizesHtml}
+            </div>
+            <div class="product-actions">
+                <a href="https://wa.me/351925263235?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20${encodeURIComponent(product.name)}%20(SKU:%20${product.sku})" target="_blank" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> Comprar
+                </a>
+                <a href="https://ig.me/m/44snkrs.pt" target="_blank" class="instagram-btn">
+                    <i class="fab fa-instagram"></i> Comprar
+                </a>
+            </div>
+        `;
+
         productGrid.appendChild(productCard);
     });
-}
 
 // Função principal para filtrar e ordenar produtos
 function filterAndSortProducts() {
@@ -573,6 +585,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSelectedSizeChips(); // Garante que chips existentes (se houver, ex: na recarga) são mostrados
     filterAndSortProducts(); // Exibe os produtos iniciais
 });
+
 
 
 
