@@ -340,35 +340,52 @@ header .container {
 }
 
 
+/* Ajuste para o contêiner dos botões */
 .product-actions {
     padding: 15px;
     border-top: 1px solid #eee;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px; /* Espaço entre os botões */
+    flex-wrap: wrap; /* No telemóvel eles podem quebrar para duas linhas se não couberem */
 }
 
-.whatsapp-btn {
-    background-color: #25d366; /* Cor verde WhatsApp */
+/* Estilo base para ambos os botões */
+.whatsapp-btn, .instagram-btn {
     color: white;
-    padding: 10px 15px;
+    padding: 8px 12px;
     border: none;
     border-radius: 5px;
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 8px;
-    transition: background-color 0.2s;
+    gap: 6px;
+    transition: transform 0.2s, background-color 0.2s;
+    flex: 1; /* Faz com que ocupem o mesmo espaço */
+    justify-content: center;
+}
+
+/* Cor específica do Instagram (Gradiente clássico) */
+.instagram-btn {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.instagram-btn:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* Ajuste do botão WhatsApp para combinar */
+.whatsapp-btn {
+    background-color: #25d366;
 }
 
 .whatsapp-btn:hover {
+    transform: scale(1.05);
     background-color: #1da851;
-}
-
-.whatsapp-btn .fab {
-    font-size: 1.2rem;
 }
 
 /* Mensagem de "Nenhum produto encontrado" */
@@ -537,4 +554,5 @@ footer {
     .selected-size-chips-container {
         justify-content: center; /* Centraliza os chips em telas pequenas */
     }
+
 }
