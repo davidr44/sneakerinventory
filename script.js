@@ -135,18 +135,6 @@ const products = [
         category: "footwear"
     },
     {
-        id: 18,
-        name: "Nike Dunk Low Midnight Navy University Blue",
-        sku: "FN7800-400",
-        price: 80.00,
-        originalPrice: 120.00,
-        image: "https://i0.wp.com/www.garmspot.com/wp-content/uploads/2024/04/nike-dunk-low-navy-baby-blue_w1024_h1024_pad_-jpg.webp?fit=1024%2C1280&ssl=1",
-        sizes: [
-            { size: "42.5", qty: 2 }
-        ],
-        category: "footwear"
-    },
-    {
         id: 28,
         name: "Nike Dunk Low Retro White Black Panda (Women's)",
         sku: "DD1503-101",
@@ -602,6 +590,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSelectedSizeChips(); // Garante que chips existentes (se houver, ex: na recarga) são mostrados
     filterAndSortProducts(); // Exibe os produtos iniciais
 });
+
 
 
 
