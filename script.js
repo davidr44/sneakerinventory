@@ -66,7 +66,8 @@ const products = [
         id: 2,
         name: "adidas Handball Spezial Sporty & Rich Green",
         sku: "IH2148",
-        price: 115.00,
+        price: 90.00,
+        originalPrice: 120.00,
         image: "https://www.resellzonecesena.com/cdn/shop/files/adidas-handball-spezial-sporty-rich-green-ih2148-resellzone.jpg?v=1722926991&width=700",
         sizes: [
             { size: "36 2/3", qty: 1 }
@@ -590,6 +591,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSelectedSizeChips(); // Garante que chips existentes (se houver, ex: na recarga) são mostrados
     filterAndSortProducts(); // Exibe os produtos iniciais
 });
+
 
 
 
