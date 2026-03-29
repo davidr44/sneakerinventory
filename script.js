@@ -2,18 +2,6 @@
 const products = [
     // Adidas Campus
     {
-        id: 1,
-        name: "adidas Campus 00s Dark Green White Cloud White",
-        sku: "H03472",
-        price: 70.00,
-        originalPrice: 120.00,
-        image: "https://hypevision.pt/cdn/shop/files/campusg-front.jpg?v=1751637933&width=720",
-        sizes: [
-            { size: "39 1/3", qty: 1 }
-        ],
-        category: "footwear"
-    },
-    {
         id: 4,
         name: "adidas Campus 00s Core Black",
         sku: "HQ8708",
@@ -34,7 +22,7 @@ const products = [
         originalPrice: 90.00,
         image: "https://hypevision.pt/cdn/shop/files/campusgrey-front.jpg?v=1751637891",
         sizes: [
-            { size: "36 2/3", qty: 2 }
+            { size: "36 2/3", qty: 1 }
         ],
         category: "footwear"
     },
@@ -47,18 +35,6 @@ const products = [
         image: "https://img01.ztat.net/article/spp-media-p1/59c4a1cbd62d41159c75677e9a5fe869/afcb006d75f54509b4c62d431540fe03.jpg?imwidth=1800&filter=packshot",
         sizes: [
             { size: "36 2/3", qty: 1 }
-        ],
-        category: "footwear"
-    },
-    {
-        id: 26,
-        name: "adidas Campus 00s Youth of Paris",
-        sku: "IE8349",
-        price: 110.00,
-        originalPrice: 130.00,
-        image: "https://i.ebayimg.com/images/g/6ZUAAOSwgGZmppfl/s-l1200.jpg",
-        sizes: [
-            { size: "46", qty: 1 }
         ],
         category: "footwear"
     },
@@ -106,8 +82,7 @@ const products = [
         originalPrice: 120.00,
         image: "https://www.resellzonecesena.com/cdn/shop/files/nike-dunk-low-photon-dust-dd1503-103-resellzone.jpg?v=1717965290&width=700",
         sizes: [
-            { size: "35.5", qty: 1 },
-            { size: "44.5", qty: 1 }
+            { size: "35.5", qty: 1 }
         ],
         category: "footwear"
     },
@@ -120,18 +95,6 @@ const products = [
         image: "https://www.resellzonecesena.com/cdn/shop/files/nike-dunk-low-pink-corduroy-fn7167-100-resellzone.jpg?v=1717962392&width=900",
         sizes: [
             { size: "38.5", qty: 1 }
-        ],
-        category: "footwear"
-    },
-    {
-        id: 16,
-        name: "Nike Dunk Low Cacao Wow (Women's)",
-        sku: "DD1503-124",
-        price: 80.00,
-        originalPrice: 120.00,
-        image: "https://www.resellzonecesena.com/cdn/shop/files/nike-dunk-low-cacao-wow-dd1503-124-resellzone.jpg?v=1717965367&width=900",
-        sizes: [
-            { size: "40", qty: 1 }
         ],
         category: "footwear"
     },
