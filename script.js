@@ -42,22 +42,11 @@ const products = [
         id: 2,
         name: "adidas Handball Spezial Sporty & Rich Green",
         sku: "IH2148",
-        price: 90.00,
+        price: 80.00,
         originalPrice: 120.00,
         image: "https://www.resellzonecesena.com/cdn/shop/files/adidas-handball-spezial-sporty-rich-green-ih2148-resellzone.jpg?v=1722926991&width=700",
         sizes: [
             { size: "36 2/3", qty: 1 }
-        ],
-        category: "footwear"
-    },
-    {
-        id: 8,
-        name: "adidas Handball Spezial Sporty & Rich Pink",
-        sku: "IH2610",
-        price: 120.00,
-        image: "https://www.resellzonecesena.com/cdn/shop/files/adidas-handball-spezial-sporty-rich-pink-ih2610-resellzone.jpg?v=1717533476&width=900",
-        sizes: [
-            { size: "35.5", qty: 1 }
         ],
         category: "footwear"
     },
@@ -69,7 +58,7 @@ const products = [
         originalPrice: 110.00,
         image: "https://www.resellzonecesena.com/cdn/shop/files/adidas-handball-spezial-aluminum-core-black-if6562-resellzone.jpg?v=1742482381&width=900",
         sizes: [
-            { size: "39 1/3", qty: 2 }
+            { size: "39 1/3", qty: 1 }
         ],
         category: "footwear"
     },
@@ -166,7 +155,7 @@ const products = [
         id: 15,
         name: "Jordan 1 Retro High OG Palomino",
         sku: "DZ5485-020",
-        price: 205.00,
+        price: 191.99,
         originalPrice: 230.00,
         image: "https://www.resellzonecesena.com/cdn/shop/files/air-jordan-1-retro-high-og-palomino-dz5485-020-resellzone.jpg?v=1717597519&width=700",
         sizes: [
