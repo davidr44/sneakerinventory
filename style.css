@@ -1,4 +1,8 @@
-/* Geral e Reset */
+/* ==========================================================================
+   Sneaker Inventory · 44SNKRS.PT
+   ========================================================================== */
+
+/* --- Base --------------------------------------------------------------- */
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
@@ -13,12 +17,19 @@ body {
     padding: 0 20px;
 }
 
-/* Header */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+/* --- Header ------------------------------------------------------------- */
 header {
     background-color: #fff;
     padding: 15px 0;
     border-bottom: 1px solid #eee;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 header .container {
@@ -35,23 +46,25 @@ header .container {
 }
 
 .logo span {
-    color: #007bff; /* Ou a cor que usares para destaque */
+    color: #007bff;
 }
 
-/* Controles (Barra de pesquisa e filtros) */
+/* --- Controls: search, sort and size filter ----------------------------- */
 .controls {
     display: flex;
-    flex-wrap: wrap; /* Permite que os itens quebrem para a linha seguinte em telas pequenas */
+    flex-wrap: wrap;
     gap: 15px;
-    margin-bottom: 25px;
-    align-items: center; /* Alinha os itens verticalmente ao centro */
-    position: relative; /* Necessário para posicionar o dropdown de tamanho */
-    justify-content: flex-start; /* Alinha os itens ao início do contêiner */
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative; /* anchor for the size dropdown */
 }
 
 .search-bar {
-    flex-grow: 1; /* Ocupa o espaço disponível */
-    max-width: 470px; /* Limita a largura máxima da barra de pesquisa */
+    width: 300px;
+    max-width: 470px;
+    flex-grow: 1;
+    flex-shrink: 0;
 }
 
 .input-wrapper {
@@ -60,12 +73,14 @@ header .container {
 }
 
 .input-wrapper input {
-    width: calc(100% - 40px); /* Ajusta a largura para o ícone */
-    padding: 10px 10px 10px 40px; /* Aumenta padding à esquerda para o ícone */
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 10px 10px 40px; /* room for the search icon */
     border: 1px solid #ddd;
     border-radius: 25px;
+    font-family: inherit;
     font-size: 1rem;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .search-icon {
@@ -73,10 +88,9 @@ header .container {
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: #888;
+    color: #000;
 }
 
-/* Estilos para os botões de filtro (Padrão, Preço, etc.) e o botão Toggle do Tamanho */
 .filter-btn {
     background-color: #fff;
     color: #333;
@@ -84,12 +98,14 @@ header .container {
     border: 1px solid #ccc;
     border-radius: 25px;
     cursor: pointer;
+    font-family: inherit;
     font-size: 0.9rem;
     font-weight: 600;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s;
     display: inline-flex;
     align-items: center;
-    gap: 8px; /* Espaço entre o ícone e o texto */
+    gap: 8px;
+    white-space: nowrap;
 }
 
 .filter-btn:hover {
@@ -98,79 +114,36 @@ header .container {
 }
 
 .filter-btn.active {
-    background-color: #333; /* Fundo PRETO para o botão ativo */
-    color: white; /* Texto BRANCO para o botão ativo */
-    border-color: #333; /* Borda PRETA para o botão ativo */
-}
-
-/* --- ESTILOS PARA O NOVO FILTRO DE MÚLTIPLOS TAMANHOS --- */
-
-/* Contêiner para os chips de tamanho selecionados (os que aparecem à esquerda) */
-.selected-size-chips-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-right: auto; /* Empurra os chips para a esquerda */
-    max-width: 300px; /* Limita a largura para não invadir outros botões */
-    order: -1; /* Força este container a aparecer antes de todos os outros itens flex, incluindo search bar */
-}
-
-/* Estilos para cada chip de tamanho selecionado (o "38.5 x" preto) */
-.selected-size-chip {
-    background-color: #333; /* Fundo preto */
-    color: white; /* Texto branco */
-    padding: 6px 10px;
-    border-radius: 20px; /* Bem arredondado */
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 0.85rem;
-    font-weight: bold;
-    white-space: nowrap; /* Impede que o texto quebre */
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.selected-size-chip:hover {
-    background-color: #555; /* Um cinza mais claro no hover */
-}
-
-.selected-size-chip .remove-chip-btn {
-    background: none;
-    border: none;
+    background-color: #333;
     color: white;
-    font-size: 0.9rem;
-    cursor: pointer;
-    padding: 0 4px;
-    margin-left: 2px;
-    transition: color 0.2s;
+    border-color: #333;
 }
 
-.selected-size-chip .remove-chip-btn:hover {
-    color: #f00; /* Vermelho no hover para o 'x' */
-}
-
-/* Estilos para o pop-up de filtro de tamanho (a área com os círculos) */
+/* Size filter dropdown */
 .size-filter-dropdown {
-    position: absolute; /* Posição absoluta em relação ao .controls */
-    top: calc(100% + 10px); /* Abaixo dos botões de filtro, com algum espaço */
-    right: 20px; /* Ajusta conforme onde queres que apareça (pode ser left: 20px também) */
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     padding: 15px;
-    z-index: 1000; /* Garante que fica por cima de outros elementos */
-    display: none; /* Inicialmente escondido */
+    z-index: 1000;
+    display: none;
     flex-direction: column;
     gap: 15px;
-    max-width: 300px; /* Limita a largura do pop-up */
-    max-height: 400px; /* Limita a altura do pop-up */
-    overflow-y: auto; /* Adiciona scroll se o conteúdo for maior que a altura */
+    max-width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
 .size-filter-dropdown.show {
-    display: flex; /* Mostrar quando tiver a classe 'show' */
+    display: flex;
+}
+
+.size-filter-section[hidden] {
+    display: none;
 }
 
 .size-filter-section h4 {
@@ -186,56 +159,110 @@ header .container {
 .size-options {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px; /* Espaçamento entre os círculos de tamanho */
+    gap: 8px;
 }
 
-/* Estilo para cada tag de tamanho clicável (o "círculo" azul/preto) no pop-up */
 .size-tag {
-    background-color: #f0f0f0; /* Cor de fundo padrão inativo (cinza claro) */
-    color: #333; /* Texto escuro */
+    background-color: #f0f0f0;
+    color: #333;
     border: 1px solid #ccc;
-    border-radius: 50%; /* Círculo perfeito */
-    width: 40px; /* Largura e altura iguais para ser um círculo */
+    border-radius: 50%;
+    width: 40px;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: inherit;
     font-size: 0.85rem;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-    flex-shrink: 0; /* Impede que os itens encolham */
+    flex-shrink: 0;
 }
 
 .size-tag:hover {
-    background-color: #e0e0e0; /* Um pouco mais escuro no hover */
+    background-color: #e0e0e0;
 }
 
 .size-tag.selected {
-    background-color: #333; /* PRETO quando selecionado */
-    color: white; /* BRANCO quando selecionado */
+    background-color: #333;
+    color: white;
     border-color: #333;
 }
 
-/* Botão "Aplicar Filtro" dentro do pop-up */
 .apply-filter-btn {
-    background-color: #333; /* Preto para este botão */
+    background-color: #333;
     color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-family: inherit;
     font-size: 1rem;
     margin-top: 10px;
     transition: background-color 0.2s;
-    width: 100%; /* Botão "Aplicar" ocupa toda a largura */
+    width: 100%;
 }
 
 .apply-filter-btn:hover {
     background-color: #555;
 }
 
+/* Selected size chips (shown under the controls) */
+.selected-size-chips-wrapper {
+    display: none; /* shown by JS when at least one size is selected */
+    width: 100%;
+    max-width: 1200px;
+    margin: 5px auto 20px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
 
+.selected-size-chips-wrapper.active {
+    display: block;
+}
+
+.selected-size-chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.selected-size-chip {
+    background-color: #333;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+}
+
+.selected-size-chip:hover {
+    background-color: #555;
+}
+
+.selected-size-chip .remove-chip-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 4px;
+    margin-left: 2px;
+    transition: color 0.2s;
+}
+
+.selected-size-chip .remove-chip-btn:hover {
+    color: #f00;
+}
+
+/* --- Product grid ------------------------------------------------------- */
 #productGrid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -248,7 +275,7 @@ header .container {
 .product-card {
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -257,7 +284,7 @@ header .container {
 
 .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .product-card img {
@@ -265,11 +292,19 @@ header .container {
     height: 250px;
     object-fit: cover;
     border-bottom: 1px solid #eee;
+    background-color: #f0f0f0;
+}
+
+/* Shown when a hotlinked product photo fails to load */
+.product-card img.img-fallback {
+    object-fit: contain;
+    padding: 70px;
+    box-sizing: border-box;
 }
 
 .product-info {
     padding: 15px;
-    flex-grow: 1; /* Permite que o info ocupe espaço restante */
+    flex-grow: 1;
 }
 
 .product-info h3 {
@@ -277,7 +312,7 @@ header .container {
     margin-bottom: 8px;
     font-size: 1.1rem;
     color: #333;
-    min-height: 40px; /* Garante altura mínima para nomes de produto */
+    min-height: 40px;
 }
 
 .product-info .sku {
@@ -286,32 +321,28 @@ header .container {
     margin-bottom: 10px;
 }
 
-/* Atualiza a classe .product-price para permitir alinhar os dois preços */
 .product-price {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #007bff; /* Azul padrão */
+    color: #007bff;
     margin-bottom: 10px;
-    display: flex; /* Para ficarem lado a lado */
-    align-items: center; /* Alinhar verticalmente */
-    gap: 10px; /* Espaço entre o preço riscado e o novo */
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-/* Estilo para o preço antigo (Riscado e Cinzento) */
-.original-price {
-    text-decoration: line-through; /* O risco no meio */
-    color: #999; /* Cinzento */
-    font-size: 0.85em; /* Ligeiramente mais pequeno */
-    font-weight: normal; /* Sem negrito */
-}
-
-/* O preço atual mantém-se com a cor do pai (.product-price), não precisamos de mudar muito */
 .current-price {
     color: #007bff;
     font-weight: bold;
 }
 
-/* Estilo para o contêiner de tamanhos disponíveis */
+.original-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 0.85em;
+    font-weight: normal;
+}
+
 .available-sizes {
     display: flex;
     flex-wrap: wrap;
@@ -323,54 +354,45 @@ header .container {
     align-items: center;
 }
 
-/* **AJUSTE PARA A FRASE "TAMANHOS DISPONÍVEIS:"** */
-.available-sizes span:first-child {
-    background-color: transparent; /* Remove background */
-    color: #555; /* Cor de texto mais suave */
-    font-weight: normal; /* Remove negrito */
-    padding: 0; /* Remove padding */
-    border: none; /* Remove borda */
-    margin-right: 5px; /* Adiciona espaço para as tags */
-    font-size: 1rem; /* Tamanho de fonte que definiste anteriormente */
+.available-sizes-label {
+    color: #555;
+    margin-right: 5px;
+    font-size: 1rem;
 }
 
-/* Estilo para as tags de tamanho individuais (os círculos pretos nos produtos) */
 .size-tag-display {
-    background-color: #333; /* Fundo preto */
-    color: white; /* Letras brancas */
+    background-color: #333;
+    color: white;
     padding: 4px 10px;
     border-radius: 15px;
     font-size: 0.78rem;
-    font-weight: bold; /* Letras a negrito */
-    border: 1px solid #222; /* Borda um pouco mais escura */
+    font-weight: bold;
+    border: 1px solid #222;
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Estilo para tags 'out-of-stock' */
 .size-tag-display.out-of-stock {
     opacity: 0.6;
     text-decoration: line-through;
-    background-color: #888; /* Um cinza mais claro para esgotados */
-    color: #ddd; /* Texto mais claro */
+    background-color: #888;
+    color: #ddd;
 }
 
-
-/* Ajuste para o contêiner dos botões */
 .product-actions {
     padding: 15px;
     border-top: 1px solid #eee;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px; /* Espaço entre os botões */
-    flex-wrap: wrap; /* No telemóvel eles podem quebrar para duas linhas se não couberem */
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
-/* Estilo base para ambos os botões */
-.whatsapp-btn, .instagram-btn {
+.whatsapp-btn,
+.instagram-btn {
     color: white;
     padding: 8px 12px;
     border: none;
@@ -380,23 +402,12 @@ header .container {
     font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 6px;
-    transition: transform 0.2s, background-color 0.2s;
-    flex: 1; /* Faz com que ocupem o mesmo espaço */
     justify-content: center;
+    gap: 6px;
+    flex: 1;
+    transition: transform 0.2s, background-color 0.2s;
 }
 
-/* Cor específica do Instagram (Gradiente clássico) */
-.instagram-btn {
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-}
-
-.instagram-btn:hover {
-    transform: scale(1.05);
-    filter: brightness(1.1);
-}
-
-/* Ajuste do botão WhatsApp para combinar */
 .whatsapp-btn {
     background-color: #25d366;
 }
@@ -406,17 +417,25 @@ header .container {
     background-color: #1da851;
 }
 
-/* Mensagem de "Nenhum produto encontrado" */
+.instagram-btn {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.instagram-btn:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
 .no-results {
     text-align: center;
     width: 100%;
-    grid-column: 1 / -1; /* Faz com que ocupe toda a largura do grid */
+    grid-column: 1 / -1;
     font-size: 1.1rem;
     color: #777;
     padding: 30px 0;
 }
 
-/* Rodapé */
+/* --- Footer ------------------------------------------------------------- */
 footer {
     text-align: center;
     padding: 20px;
@@ -426,152 +445,61 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Controles (Barra de pesquisa e filtros) */
-.controls {
-    display: flex;
-    flex-wrap: wrap; /* Permite que os itens quebrem para a linha seguinte em telas pequenas */
-    gap: 15px; /* Espaço entre os itens */
-    margin-bottom: 10px; /* Margem para os chips de tamanho abaixo */
-    align-items: center;
-    position: relative; /* Para o posicionamento absoluto do sizeFilterDropdown */
-    justify-content: flex-start; /* Alinha os itens ao início do contêiner */
-    /* Certifica-te que não tens max-width ou margin: auto aqui se já os tens no .container */
-}
-
-.search-bar {
-    width: 300px; /* Largura definida para a barra de pesquisa */
-    flex-shrink: 0; /* Impede que a search bar encolha */
-    /* Remover flex-grow: 1; se estiver presente */
-}
-
-.search-bar .input-wrapper input {
-    width: calc(100% - 40px); /* Ajusta a largura para o ícone */
-    padding: 10px 10px 10px 40px; /* Aumenta padding à esquerda para o ícone */
-    border: 1px solid #ddd;
-    border-radius: 25px;
-    font-size: 1rem;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
-}
-
-.search-icon {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #000; /* LUPA PRETA */
-}
-
-/* Estilos para os botões de filtro (Padrão, Preço, etc.) e o botão Toggle do Tamanho */
-.filter-btn {
-    background-color: #fff;
-    color: #333;
-    padding: 10px 15px;
-    border: 1px solid #ccc;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px; /* Espaço entre o ícone e o texto */
-    white-space: nowrap; /* Impede que o texto quebre */
-}
-
-.filter-btn:hover {
-    background-color: #e2e6ea;
-    border-color: #adadad;
-}
-
-.filter-btn.active {
-    background-color: #333; /* Fundo PRETO para o botão ativo */
-    color: white; /* Texto BRANCO para o botão ativo */
-    border-color: #333; /* Borda PRETA para o botão ativo */
-}
-
-/* Estilos para o pop-up de filtro de tamanho (a área com os círculos) */
-.size-filter-dropdown {
-    position: absolute; /* Posição absoluta em relação ao .controls */
-    top: calc(100% + 10px); /* Abaixo dos botões de filtro, com algum espaço */
-    right: 0; /* Alinha à direita dos controles */
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    padding: 15px;
-    z-index: 1000; /* Garante que fica por cima de outros elementos */
-    display: none; /* Inicialmente escondido */
-    flex-direction: column;
-    gap: 15px;
-    max-width: 300px; /* Limita a largura do pop-up */
-    max-height: 400px; /* Limita a altura do pop-up */
-    overflow-y: auto; /* Adiciona scroll se o conteúdo for maior que a altura */
-}
-
-.size-filter-dropdown.show {
-    display: flex; /* Mostrar quando tiver a classe 'show' */
-}
-
-/* NOVO CONTÊINER PARA OS CHIPS DE TAMANHO FILTRADOS */
-.selected-size-chips-wrapper {
-    width: 100%; /* Ocupa toda a largura */
-    margin-top: 5px; /* Pequeno espaço em relação aos controles acima */
-    margin-bottom: 20px; /* Espaço abaixo dos chips e acima dos produtos */
-    max-width: 1200px; /* Alinha com o max-width do .container */
-    margin-left: auto; /* Centraliza */
-    margin-right: auto; /* Centraliza */
-    padding: 0 20px; /* Alinha com o padding do .container */
-    box-sizing: border-box; /* Garante que o padding não adicione largura extra */
-    display: none; /* Escondido por padrão, será mostrado pelo JS se houver chips */
-}
-
-.selected-size-chips-wrapper.active {
-    display: block; /* Mostra o wrapper quando há chips */
-}
-
-.selected-size-chips-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-/* Media Queries para Responsividade */
+/* --- Mobile ------------------------------------------------------------- */
 @media (max-width: 768px) {
+    /* Search and the size filter take a full row each; the three sort
+       buttons share one row, so the first product shows up sooner. */
     .controls {
-        flex-direction: column;
-        align-items: stretch; /* Estica os itens para ocupar a largura total */
-        gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .search-bar,
+    #toggleSizeFilterBtn,
+    .size-filter-dropdown {
+        grid-column: 1 / -1;
     }
 
     .search-bar {
-        width: 100%; /* Ocupa a largura total em mobile */
+        width: 100%;
         max-width: none;
     }
 
     .filter-btn {
-        width: 100%; /* Botões ocupam a largura total em mobile */
         justify-content: center;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.2;
+        padding: 8px 6px;
+        font-size: 0.8rem;
+        min-height: 44px;
+    }
+
+    .filter-btn[data-filter] i {
+        display: none;
     }
 
     .size-filter-dropdown {
-        position: static; /* Volta a ser estático no fluxo do documento para mobile */
+        position: static;
         width: 100%;
         max-width: none;
+        max-height: none;
+        box-sizing: border-box;
         box-shadow: none;
-        border: none;
-        padding: 0;
-        margin-top: 10px;
+        margin-top: 2px;
     }
 
     .selected-size-chips-wrapper {
-        padding: 0 10px; /* Ajusta o padding para mobile */
-        margin-left: 0;
-        margin-right: 0;
+        padding: 0;
     }
 
     .selected-size-chips-container {
-        justify-content: center; /* Centraliza os chips em telas pequenas */
+        justify-content: center;
     }
 
+    #productGrid {
+        padding: 10px 0;
+        margin-top: 10px;
+    }
 }
-

@@ -1,4 +1,5 @@
-// Dados dos teus produtos
+// Inventário: um objeto por produto. Para atualizar stock ou preços, edita esta lista.
+// price = preço atual; originalPrice (opcional) = preço antes da promoção, aparece riscado.
 const products = [
     // Adidas Campus
     {
@@ -206,29 +207,104 @@ const products = [
     },
 ];
 
-// Variáveis de estado
-let currentFilter = 'all';
-let currentSearchTerm = '';
-let selectedSizes = [];
+// --- Contactos -------------------------------------------------------------
+const WHATSAPP_NUMBER = '351925263235';
+const INSTAGRAM_HANDLE = '44snkrs.pt';
 
-// Referências DOM
+// --- Tamanhos ----------------------------------------------------------------
+const CLOTHING_ORDER = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+const ONE_SIZE_VALUES = ['tamanho unico', 'tamanho único', 'n/a', 'one size'];
+
+function isOneSize(size) {
+    return ONE_SIZE_VALUES.includes(String(size).trim().toLowerCase());
+}
+
+function hasSku(product) {
+    return product.sku && product.sku.trim().toLowerCase() !== 'n/a';
+}
+
+// Converte tamanhos EU em número para ordenar: "36 2/3" → 36.67, "38,5" → 38.5
+function parseShoeSize(sizeStr) {
+    const clean = String(sizeStr).replace(',', '.').trim();
+    const [whole, fraction] = clean.split(' ');
+    const base = parseFloat(whole);
+    if (fraction === '1/2') return base + 1 / 2;
+    if (fraction === '1/3') return base + 1 / 3;
+    if (fraction === '2/3') return base + 2 / 3;
+    return base;
+}
+
+// Ordem: tamanhos de roupa pela ordem XS → XXL, depois numéricos, depois o resto
+function compareSizes(a, b) {
+    const clothingA = CLOTHING_ORDER.indexOf(a);
+    const clothingB = CLOTHING_ORDER.indexOf(b);
+    if (clothingA !== -1 && clothingB !== -1) return clothingA - clothingB;
+    if (clothingA !== -1) return -1;
+    if (clothingB !== -1) return 1;
+
+    const numA = parseShoeSize(a);
+    const numB = parseShoeSize(b);
+    if (!isNaN(numA) && !isNaN(numB)) return numA - numB;
+    if (!isNaN(numA)) return -1;
+    if (!isNaN(numB)) return 1;
+    return a.localeCompare(b);
+}
+
+// Só mostra no filtro os tamanhos que existem em stock nessa categoria
+function sizesInStock(category) {
+    const sizes = new Set();
+    products
+        .filter(product => product.category === category)
+        .forEach(product => product.sizes.forEach(s => {
+            if (s.qty > 0 && !isOneSize(s.size)) sizes.add(s.size);
+        }));
+    return Array.from(sizes).sort(compareSizes);
+}
+
+function formatPrice(value) {
+    return `€${value.toFixed(2).replace('.', ',')}`;
+}
+
+function escapeHtml(text) {
+    return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
+const IMAGE_FALLBACK = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60">' +
+    '<text x="80" y="35" font-family="sans-serif" font-size="12" fill="#999" text-anchor="middle">Imagem indisponível</text></svg>'
+);
+
+// --- Estado ------------------------------------------------------------------
+let currentFilter = 'all';     // ordenação ativa
+let currentSearchTerm = '';
+let selectedSizes = [];        // tamanhos aplicados (os que filtram a grelha)
+let pendingSizes = [];         // tamanhos escolhidos no pop-up, ainda por aplicar
+
+// --- Referências DOM ---------------------------------------------------------
 const productGrid = document.getElementById('productGrid');
 const searchInput = document.getElementById('searchInput');
-const filterButtons = document.querySelectorAll('.controls .filter-btn:not(#toggleSizeFilterBtn)');
+const sortButtons = document.querySelectorAll('.filter-btn[data-filter]');
 const toggleSizeFilterBtn = document.getElementById('toggleSizeFilterBtn');
 const sizeFilterDropdown = document.getElementById('sizeFilterDropdown');
-const footwearSizeOptionsDiv = document.getElementById('footwearSizeOptions'); // Renomeado para evitar conflito
-const clothingSizeOptionsDiv = document.getElementById('clothingSizeOptions'); // NOVO: Referência para a div de Clothing
+const footwearSizeSection = document.getElementById('footwearSizeSection');
+const clothingSizeSection = document.getElementById('clothingSizeSection');
+const footwearSizeOptionsDiv = document.getElementById('footwearSizeOptions');
+const clothingSizeOptionsDiv = document.getElementById('clothingSizeOptions');
 const applySizeFilterBtn = document.getElementById('applySizeFilterBtn');
 const selectedSizeChipsContainer = document.getElementById('selectedSizeChipsContainer');
 const selectedSizeChipsWrapper = document.getElementById('selectedSizeChipsWrapper');
 
+// --- Grelha de produtos ------------------------------------------------------
+function buildWhatsAppLink(product) {
+    const reference = hasSku(product) ? ` (SKU: ${product.sku})` : '';
+    const message = `Olá, tenho interesse no ${product.name}${reference}`;
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
 
-// --- DEFINIÇÃO DOS TAMANHOS FIXOS DE ROUPA ---
-const CLOTHING_SIZES = ["XS", "S", "M", "L", "XL", "XXL"]; // Tamanhos de roupa como pediste
-
-// Função para exibir os produtos
-// Função para exibir os produtos
 function displayProducts(productsToDisplay) {
     productGrid.innerHTML = '';
 
@@ -241,81 +317,72 @@ function displayProducts(productsToDisplay) {
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
 
-        // 1. Lógica dos Tamanhos (Mantida igual)
         const sizesHtml = product.sizes.map(s => {
-            if (s.size === "Tamanho Unico") return ''; 
+            if (isOneSize(s.size)) return '<span class="size-tag-display">Tamanho único</span>';
             const qtyDisplay = s.qty > 0 ? ` (${s.qty})` : '';
             const outOfStockClass = s.qty === 0 ? ' out-of-stock' : '';
-            return `<span class="size-tag-display${outOfStockClass}">${s.size}${qtyDisplay}</span>`;
+            return `<span class="size-tag-display${outOfStockClass}">${escapeHtml(s.size)}${qtyDisplay}</span>`;
         }).join('');
 
-        // 2. NOVA LÓGICA DE PREÇO (Corrigida e Integrada)
-        let priceHtml = '';
-        if (product.originalPrice) {
-            // Se tiver desconto: Mostra o antigo riscado + o novo
-            priceHtml = `
-                <span class="current-price">€${product.price.toFixed(2).replace('.', ',')}</span>
-                <span class="original-price">€${product.originalPrice.toFixed(2).replace('.', ',')}</span>
-            `;
-        } else {
-            // Se não tiver desconto: Mostra só o preço normal
-            priceHtml = `€${product.price.toFixed(2).replace('.', ',')}`;
-        }
+        // Com promoção: preço atual + preço antigo riscado
+        const priceHtml = product.originalPrice
+            ? `<span class="current-price">${formatPrice(product.price)}</span>
+               <span class="original-price">${formatPrice(product.originalPrice)}</span>`
+            : formatPrice(product.price);
 
-        // 3. HTML DO CARD (Usa a variável priceHtml)
+        const name = escapeHtml(product.name);
+        const skuHtml = hasSku(product) ? `<p class="sku">SKU: ${escapeHtml(product.sku)}</p>` : '';
+
         productCard.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
+            <img src="${escapeHtml(product.image)}" alt="${name}" loading="lazy" decoding="async">
             <div class="product-info">
-                <h3>${product.name}</h3>
-                <p class="sku">SKU: ${product.sku}</p>
-                
+                <h3>${name}</h3>
+                ${skuHtml}
                 <p class="product-price">${priceHtml}</p>
-                
             </div>
             <div class="available-sizes">
-                <span>Tamanhos Disponíveis:</span>
+                <span class="available-sizes-label">Tamanhos Disponíveis:</span>
                 ${sizesHtml}
             </div>
             <div class="product-actions">
-                <a href="https://wa.me/351925263235?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20${encodeURIComponent(product.name)}%20(SKU:%20${product.sku})" target="_blank" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Comprar
+                <a href="${buildWhatsAppLink(product)}" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i> Comprar
                 </a>
-                <a href="https://ig.me/m/44snkrs.pt" target="_blank" class="instagram-btn">
-                    <i class="fab fa-instagram"></i> Comprar
+                <a href="https://ig.me/m/${INSTAGRAM_HANDLE}" target="_blank" rel="noopener noreferrer" class="instagram-btn">
+                    <i class="fab fa-instagram" aria-hidden="true"></i> Comprar
                 </a>
             </div>
         `;
 
+        // As fotos vêm de outros sites; se uma falhar, o card não fica partido
+        const img = productCard.querySelector('img');
+        img.addEventListener('error', () => {
+            img.src = IMAGE_FALLBACK;
+            img.classList.add('img-fallback');
+        }, { once: true });
+
         productGrid.appendChild(productCard);
     });
 }
-// Função principal para filtrar e ordenar produtos
+
+// Pesquisa → filtro de tamanhos → ordenação
 function filterAndSortProducts() {
     let filtered = [...products];
 
-    // 1. Filtrar por termo de pesquisa
     if (currentSearchTerm) {
-        const searchTermLower = currentSearchTerm.toLowerCase();
+        const term = currentSearchTerm.toLowerCase();
         filtered = filtered.filter(product =>
-            product.name.toLowerCase().includes(searchTermLower) ||
-            product.sku.toLowerCase().includes(searchTermLower)
+            product.name.toLowerCase().includes(term) ||
+            product.sku.toLowerCase().includes(term)
         );
     }
 
-    // 2. Filtrar por tamanhos selecionados
     if (selectedSizes.length > 0) {
-        filtered = filtered.filter(product => {
-            return selectedSizes.some(selectedSize => {
-                // Ignora "Tamanho Unico" nos produtos ao filtrar, a menos que tenhas uma categoria específica para isso
-                if (selectedSize === "Tamanho Unico") return false; 
-                
-                // Verifica se o produto tem o tamanho selecionado E se a quantidade é > 0
-                return product.sizes.some(s => s.size === selectedSize && s.qty > 0);
-            });
-        });
+        filtered = filtered.filter(product =>
+            product.sizes.some(s => selectedSizes.includes(s.size) && s.qty > 0)
+        );
     }
 
-    // 3. Ordenar
     if (currentFilter === 'price-asc') {
         filtered.sort((a, b) => a.price - b.price);
     } else if (currentFilter === 'price-desc') {
@@ -325,237 +392,138 @@ function filterAndSortProducts() {
     displayProducts(filtered);
 }
 
-// Função para gerar as tags de tamanho para o pop-up
-function generateSizeOptionsInDropdown() {
-    // 1. Coleta tamanhos de Calçado (apenas de produtos de calçado e em stock)
-    const footwearSizes = new Set();
-    products.forEach(product => {
-        if (product.category === 'footwear') {
-            product.sizes.forEach(s => {
-                if (s.qty > 0 && s.size !== "Tamanho Unico") { // Adicionado s.size !== "Tamanho Unico" para garantir
-                    footwearSizes.add(s.size);
-                }
-            });
-        }
-    });
+// --- Filtro de tamanhos ------------------------------------------------------
+function renderSizeOptions(container, section, sizes) {
+    container.innerHTML = '';
+    section.hidden = sizes.length === 0;
 
-    // Ordenação personalizada para tamanhos de calçado
-    const sortedFootwearSizes = Array.from(footwearSizes).sort((a, b) => {
-        const parseSize = (sizeStr) => {
-            sizeStr = sizeStr.replace(',', '.').trim();
-            if (sizeStr.includes(' ')) {
-                const parts = sizeStr.split(' ');
-                let whole = parseFloat(parts[0]);
-                if (parts[1] === '1/2') return whole + 0.5;
-                if (parts[1] === '1/3') return whole + 1/3;
-                if (parts[1] === '2/3') return whole + 2/3;
-            }
-            return parseFloat(sizeStr);
-        };
-
-        const numA = parseSize(a);
-        const numB = parseSize(b);
-
-        if (!isNaN(numA) && !isNaN(numB)) {
-            return numA - numB;
-        } else if (!isNaN(numA)) {
-            return -1;
-        } else if (!isNaN(numB)) {
-            return 1;
-        }
-        return a.localeCompare(b);
-    });
-
-    // Popula a secção de calçado
-    footwearSizeOptionsDiv.innerHTML = '';
-    sortedFootwearSizes.forEach(size => {
+    sizes.forEach(size => {
         const sizeTag = document.createElement('button');
+        sizeTag.type = 'button';
         sizeTag.classList.add('size-tag');
         sizeTag.textContent = size;
         sizeTag.dataset.size = size;
-
-        if (selectedSizes.includes(size)) {
-            sizeTag.classList.add('selected');
-        }
-        sizeTag.addEventListener('click', handleSizeTagClick); // Reusa o handler de clique
-        footwearSizeOptionsDiv.appendChild(sizeTag);
-    });
-
-    // 2. Popula os tamanhos de Roupa (usando o array fixo)
-    clothingSizeOptionsDiv.innerHTML = '';
-    CLOTHING_SIZES.forEach(size => {
-        const sizeTag = document.createElement('button');
-        sizeTag.classList.add('size-tag');
-        sizeTag.textContent = size;
-        sizeTag.dataset.size = size;
-
-        // Se o tamanho estiver selecionado, marca como selecionado
-        if (selectedSizes.includes(size)) {
-            sizeTag.classList.add('selected');
-        }
-        // Adiciona a lógica de clique
-        sizeTag.addEventListener('click', handleSizeTagClick); // Reusa o handler de clique
-        clothingSizeOptionsDiv.appendChild(sizeTag);
+        sizeTag.classList.toggle('selected', pendingSizes.includes(size));
+        sizeTag.setAttribute('aria-pressed', pendingSizes.includes(size));
+        sizeTag.addEventListener('click', handleSizeTagClick);
+        container.appendChild(sizeTag);
     });
 }
 
-// Handler para cliques nos botões de tamanho (reutilizado para calçado e roupa)
+function generateSizeOptionsInDropdown() {
+    renderSizeOptions(footwearSizeOptionsDiv, footwearSizeSection, sizesInStock('footwear'));
+    renderSizeOptions(clothingSizeOptionsDiv, clothingSizeSection, sizesInStock('clothing'));
+}
+
+// Escolher um tamanho no pop-up só conta depois de "Aplicar Filtro"
 function handleSizeTagClick() {
     const size = this.dataset.size;
-    if (this.classList.contains('selected')) {
-        this.classList.remove('selected');
-        selectedSizes = selectedSizes.filter(s => s !== size);
+    if (pendingSizes.includes(size)) {
+        pendingSizes = pendingSizes.filter(s => s !== size);
     } else {
-        this.classList.add('selected');
-        selectedSizes.push(size);
+        pendingSizes.push(size);
     }
-    updateSelectedSizeChips(); // Atualiza os chips em tempo real
-    // Não chama filterAndSortProducts() aqui, só ao clicar em "Aplicar Filtro"
+    this.classList.toggle('selected', pendingSizes.includes(size));
+    this.setAttribute('aria-pressed', pendingSizes.includes(size));
 }
 
-
-// Função para atualizar os chips de tamanho selecionados
 function updateSelectedSizeChips() {
-    selectedSizeChipsContainer.innerHTML = ''; // Limpa os chips existentes
+    selectedSizeChipsContainer.innerHTML = '';
+    selectedSizeChipsWrapper.classList.toggle('active', selectedSizes.length > 0);
 
-    // Adiciona ou remove a classe 'active' do wrapper dos chips
-    if (selectedSizes.length > 0) {
-        selectedSizeChipsWrapper.classList.add('active');
-    } else {
-        selectedSizeChipsWrapper.classList.remove('active');
-    }
-
-    const sortedSelectedSizes = [...selectedSizes].sort((a, b) => {
-        // Lógica de ordenação para chips (prioriza números, depois alfabético)
-        const parseSize = (sizeStr) => {
-            sizeStr = sizeStr.replace(',', '.').trim();
-            if (!isNaN(parseFloat(sizeStr))) {
-                return parseFloat(sizeStr);
-            }
-            // Para tamanhos como XS, S, M, L, XL
-            const order = { "XS": 1, "S": 2, "M": 3, "L": 4, "XL": 5, "XXL": 6 };
-            return order[sizeStr] || 99; // Retorna um número alto para tamanhos não reconhecidos
-        };
-        const numA = parseSize(a);
-        const numB = parseSize(b);
-
-        if (numA !== 99 && numB !== 99) { // Ambos são tamanhos de roupa ou numéricos
-            return numA - numB;
-        } else if (numA !== 99) { // A é roupa/numérico, B não
-            return -1;
-        } else if (numB !== 99) { // B é roupa/numérico, A não
-            return 1;
-        }
-        return a.localeCompare(b); // Ambos são outros tipos, ordena alfabeticamente
-    });
-
-    sortedSelectedSizes.forEach(size => {
+    [...selectedSizes].sort(compareSizes).forEach(size => {
         const chip = document.createElement('div');
         chip.classList.add('selected-size-chip');
-        chip.innerHTML = `
-            <span>${size}</span>
-            <button class="remove-chip-btn" data-size="${size}">x</button>
-        `;
-        chip.querySelector('.remove-chip-btn').addEventListener('click', (event) => {
-            const sizeToRemove = event.target.dataset.size;
-            selectedSizes = selectedSizes.filter(s => s !== sizeToRemove);
-            updateSelectedSizeChips();
-            generateSizeOptionsInDropdown(); // Atualiza o estado das tags no pop-up
+
+        const label = document.createElement('span');
+        label.textContent = size;
+
+        const removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.classList.add('remove-chip-btn');
+        removeBtn.textContent = '×';
+        removeBtn.setAttribute('aria-label', `Remover tamanho ${size}`);
+        removeBtn.addEventListener('click', () => {
+            selectedSizes = selectedSizes.filter(s => s !== size);
+            pendingSizes = [...selectedSizes];
+            refreshSizeFilterUi();
             filterAndSortProducts();
         });
+
+        chip.append(label, removeBtn);
         selectedSizeChipsContainer.appendChild(chip);
     });
 }
 
+// O botão "Filtrar por Tamanho" fica ativo com o pop-up aberto ou com tamanhos aplicados
+function refreshSizeFilterUi() {
+    const isOpen = sizeFilterDropdown.classList.contains('show');
+    toggleSizeFilterBtn.classList.toggle('active', isOpen || selectedSizes.length > 0);
+    toggleSizeFilterBtn.setAttribute('aria-expanded', isOpen);
+    updateSelectedSizeChips();
+}
 
-// --- Event Listeners ---
+function openSizeFilter() {
+    pendingSizes = [...selectedSizes];
+    generateSizeOptionsInDropdown();
+    sizeFilterDropdown.classList.add('show');
+    refreshSizeFilterUi();
+}
 
-// Pesquisa
+// Fechar sem aplicar descarta as escolhas por aplicar
+function closeSizeFilter() {
+    pendingSizes = [...selectedSizes];
+    sizeFilterDropdown.classList.remove('show');
+    refreshSizeFilterUi();
+}
+
+// --- Eventos -----------------------------------------------------------------
 searchInput.addEventListener('input', (event) => {
     currentSearchTerm = event.target.value.trim();
     filterAndSortProducts();
 });
 
-// Botões de filtro de ordenação (Padrão, Menor-Maior, Maior-Menor)
-filterButtons.forEach(button => {
+// Ordenação e filtro de tamanhos são independentes: podem estar ativos ao mesmo tempo
+sortButtons.forEach(button => {
     button.addEventListener('click', () => {
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        toggleSizeFilterBtn.classList.remove('active'); // Desativa o botão "Filtrar por Tamanho" também, se estiver ativo
-        button.classList.add('active');
-
-        sizeFilterDropdown.classList.remove('show'); // Esconde o dropdown de tamanho
-
+        sortButtons.forEach(btn => btn.classList.toggle('active', btn === button));
         currentFilter = button.dataset.filter;
+        closeSizeFilter();
         filterAndSortProducts();
     });
 });
 
-// Event Listener para o botão "Filtrar por Tamanho" (para mostrar/esconder o pop-up)
 toggleSizeFilterBtn.addEventListener('click', () => {
-    sizeFilterDropdown.classList.toggle('show');
-    toggleSizeFilterBtn.classList.toggle('active');
-
     if (sizeFilterDropdown.classList.contains('show')) {
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        generateSizeOptionsInDropdown(); // Garante que as tags no pop-up estão atualizadas cada vez que abre
+        closeSizeFilter();
     } else {
-        // Se o dropdown for fechado (sem aplicar filtro explicitamente), e não há tamanhos selecionados, o botão padrão deve ficar ativo.
-        if (selectedSizes.length === 0) {
-            document.querySelector('[data-filter="all"]').classList.add('active');
-        }
+        openSizeFilter();
     }
-    filterAndSortProducts(); // Aplica o filtro imediatamente ao abrir/fechar o pop-up
 });
 
-// Event Listener para o botão "Aplicar Filtro" no pop-up
 applySizeFilterBtn.addEventListener('click', () => {
+    selectedSizes = [...pendingSizes];
     sizeFilterDropdown.classList.remove('show');
-
-    if (selectedSizes.length > 0) {
-        toggleSizeFilterBtn.classList.add('active');
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-    } else {
-        toggleSizeFilterBtn.classList.remove('active');
-        document.querySelector('[data-filter="all"]').classList.add('active');
-    }
-
-    filterAndSortProducts(); // Aplica o filtro com os tamanhos selecionados
+    refreshSizeFilterUi();
+    filterAndSortProducts();
 });
 
-// Fechar o dropdown de tamanho se clicar fora dele
 document.addEventListener('click', (event) => {
-    if (!toggleSizeFilterBtn.contains(event.target) && !sizeFilterDropdown.contains(event.target) && !searchInput.contains(event.target)) {
-        if (sizeFilterDropdown.classList.contains('show')) {
-            sizeFilterDropdown.classList.remove('show');
-            if (selectedSizes.length === 0) {
-                toggleSizeFilterBtn.classList.remove('active');
-                document.querySelector('[data-filter="all"]').classList.add('active');
-            }
-        }
+    const clickedInside = toggleSizeFilterBtn.contains(event.target) || sizeFilterDropdown.contains(event.target);
+    if (!clickedInside && sizeFilterDropdown.classList.contains('show')) {
+        closeSizeFilter();
     }
 });
 
-
-// --- Inicialização ---
-document.addEventListener('DOMContentLoaded', () => {
-    // Certifica-te que o botão 'Padrão' está ativo na carga inicial
-    document.querySelector('[data-filter="all"]').classList.add('active');
-    updateSelectedSizeChips(); // Garante que chips existentes (se houver, ex: na recarga) são mostrados
-    filterAndSortProducts(); // Exibe os produtos iniciais
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && sizeFilterDropdown.classList.contains('show')) {
+        closeSizeFilter();
+        toggleSizeFilterBtn.focus();
+    }
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// --- Arranque ----------------------------------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+    refreshSizeFilterUi();
+    filterAndSortProducts();
+});
