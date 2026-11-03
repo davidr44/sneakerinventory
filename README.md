@@ -30,6 +30,10 @@ I already had an Instagram shop for regular customers. This catalogue is for a d
 4. **Filter by size.** The filter only offers sizes that are actually in stock, split into footwear (EU) and clothing. You can pick several sizes, apply them, and remove each one from a chip.
 5. **Buy by message.** "Comprar" on WhatsApp opens a chat with me and a message already written: *"Olá, tenho interesse no adidas Campus 00s Core Black (SKU: HQ8708)"*. The other button opens an Instagram DM.
 
+**What the buyer sees after tapping "Comprar" on WhatsApp.** The message is ready; they only press send.
+
+<img src="assets/03-whatsapp-message.jpg" alt="WhatsApp on iPhone with the prefilled message: Olá, tenho interesse no adidas Campus 00s Core Black (SKU: HQ8708)" width="480">
+
 **Filtering by size.** Sizes 36.5 and 40 applied: only pairs in stock in those sizes stay, and each chip removes its size.
 
 ![Size filter with sizes 36.5 and 40 applied](assets/02-size-filter.png)
