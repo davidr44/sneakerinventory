@@ -8,11 +8,7 @@
 
 **Stack:** HTML · CSS · vanilla JavaScript · GitHub Pages
 
-<!-- Screenshots: add the files to assets/ and remove this comment.
-| Catalogue | Size filter | Message that opens |
-|:-:|:-:|:-:|
-| ![Catalogue grid](assets/01-catalogue.png) | ![Size filter with chips](assets/02-size-filter.png) | ![Prefilled WhatsApp message](assets/03-whatsapp-message.png) |
--->
+![The catalogue on desktop: search, sort, size filter and the product cards](assets/01-catalogue.png)
 
 ---
 
@@ -33,6 +29,10 @@ I already had an Instagram shop for regular customers. This catalogue is for a d
 3. **Sort** by price, low to high or high to low.
 4. **Filter by size.** The filter only offers sizes that are actually in stock, split into footwear (EU) and clothing. You can pick several sizes, apply them, and remove each one from a chip.
 5. **Buy by message.** "Comprar" on WhatsApp opens a chat with me and a message already written: *"Olá, tenho interesse no adidas Campus 00s Core Black (SKU: HQ8708)"*. The other button opens an Instagram DM.
+
+**Filtering by size.** Sizes 36.5 and 40 applied: only pairs in stock in those sizes stay, and each chip removes its size.
+
+![Size filter with sizes 36.5 and 40 applied](assets/02-size-filter.png)
 
 ---
 
